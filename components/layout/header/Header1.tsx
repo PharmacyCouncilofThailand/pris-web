@@ -94,7 +94,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
 
     // Helper for link styles
     const linkStyle = useCallback((path: string, dropdownKey?: string) => ({
-        color: isActive(path) || (dropdownKey && openDropdown === dropdownKey) ? '#FFBA00' : headerBgWhite ? '#333' : '#fff',
+        color: isActive(path) || (dropdownKey && openDropdown === dropdownKey) ? '#FFBA00' : '#fff',
         fontWeight: isActive(path) || (dropdownKey && openDropdown === dropdownKey) ? '600' : 'normal',
         cursor: 'pointer'
     }), [isActive, openDropdown, headerBgWhite]);
@@ -118,7 +118,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                 }
             `}</style>
             <header>
-                <div className={`header-area homepage1 header header-sticky d-none d-xxl-block ${scroll ? 'sticky' : ''}`} id="header" style={headerBgWhite ? { background: '#fff', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' } : {}}>
+                <div className={`header-area homepage1 header header-sticky d-none d-xxl-block ${scroll ? 'sticky' : ''}`} id="header" style={headerBgWhite ? { background: '#000', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' } : {}}>
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-lg-12">
@@ -126,11 +126,11 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                     <div className="site-logo">
                                         <Link href={`/${locale}`}>
                                             <img
-                                                src={(scroll || shouldShowColoredLogo) ? "/assets/img/logo/ACCP-BANGKOK-2026-04.png" : "/assets/img/logo/ACCP-2026-Logo-White.png"}
+                                                src="/assets/img/logo/Pris2026-logo.png"
                                                 alt="Pris 2026"
                                                 style={{
                                                     height: (scroll || shouldShowColoredLogo) ? '55px' : '150px',
-                                                    width: 'auto',
+                                                    width: '120px',
                                                     marginLeft: '0',
                                                     marginTop: (scroll || shouldShowColoredLogo) ? '0' : '-40px',
                                                     marginBottom: (scroll || shouldShowColoredLogo) ? '0' : '-40px',
@@ -144,12 +144,13 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
 
                                     <div className="main-menu">
                                         <ul>
-                                            <li><Link href={`/${locale}`} style={{ color: isActive(`/${locale}`) ? '#FFBA00' : headerBgWhite ? '#333' : '#fff', fontWeight: isActive(`/${locale}`) ? '600' : 'normal' }}>{t('home')}</Link></li>
+                                            <li><Link href={`/${locale}`} className={`menu-link ${isActive(`/${locale}`) ? 'active' : ''}`}>{t('home')}</Link></li>
                                             <li className={openDropdown === 'about' ? 'dropdown-open' : ''}>
                                                 <a
                                                     href="#"
                                                     onClick={(e) => toggleDropdown('about', e)}
-                                                    style={{ color: isActive(`/${locale}/about`) || isActive(`/${locale}/welcome-messages`) || openDropdown === 'about' ? '#FFBA00' : headerBgWhite ? '#333' : '#fff', fontWeight: isActive(`/${locale}/about`) || isActive(`/${locale}/welcome-messages`) ? '600' : 'normal', cursor: 'pointer' }}
+                                                    className={`menu-link ${isActive(`/${locale}/about`) || isActive(`/${locale}/welcome-messages`) || openDropdown === 'about' ? 'active' : ''}`}
+                                                    style={{ cursor: 'pointer' }}
                                                 >
                                                     {t('about')} <i className={`fa-solid ${openDropdown === 'about' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
@@ -162,7 +163,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                 <a
                                                     href="#"
                                                     onClick={(e) => toggleDropdown('program', e)}
-                                                    style={{ color: isActive(`/${locale}/program`) || isActive(`/${locale}/gala-dinner`) || isActive(`/${locale}/preconference-workshops`) || openDropdown === 'program' ? '#FFBA00' : headerBgWhite ? '#333' : '#fff', fontWeight: isActive(`/${locale}/program`) || isActive(`/${locale}/gala-dinner`) || isActive(`/${locale}/preconference-workshops`) ? '600' : 'normal', cursor: 'pointer' }}
+                                                    className={`menu-link ${isActive(`/${locale}/program`) || isActive(`/${locale}/gala-dinner`) || isActive(`/${locale}/preconference-workshops`) || openDropdown === 'program' ? 'active' : ''}`}
+                                                    style={{ cursor: 'pointer' }}
                                                 >
                                                     {t('program')} <i className={`fa-solid ${openDropdown === 'program' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
@@ -179,7 +181,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                 <a
                                                     href="#"
                                                     onClick={(e) => toggleDropdown('abstracts', e)}
-                                                    style={{ color: isActive(`/${locale}/call-for-abstracts`) || isActive(`/${locale}/abstract-submission-guideline`) || openDropdown === 'abstracts' ? '#FFBA00' : headerBgWhite ? '#333' : '#fff', fontWeight: isActive(`/${locale}/call-for-abstracts`) || isActive(`/${locale}/abstract-submission-guideline`) ? '600' : 'normal', cursor: 'pointer' }}
+                                                    className={`menu-link ${isActive(`/${locale}/call-for-abstracts`) || isActive(`/${locale}/abstract-submission-guideline`) || openDropdown === 'abstracts' ? 'active' : ''}`}
+                                                    style={{ cursor: 'pointer' }}
                                                 >
                                                     {t('callForAbstracts')} <i className={`fa-solid ${openDropdown === 'abstracts' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
@@ -192,7 +195,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                 <a
                                                     href="#"
                                                     onClick={(e) => toggleDropdown('registration', e)}
-                                                    style={{ color: isActive(`/${locale}/registration`) || openDropdown === 'registration' ? '#FFBA00' : headerBgWhite ? '#333' : '#fff', fontWeight: isActive(`/${locale}/registration`) ? '600' : 'normal', cursor: 'pointer' }}
+                                                    className={`menu-link ${isActive(`/${locale}/registration`) || openDropdown === 'registration' ? 'active' : ''}`}
+                                                    style={{ cursor: 'pointer' }}
                                                 >
                                                     {t('registration')} <i className={`fa-solid ${openDropdown === 'registration' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
@@ -205,7 +209,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                 <a
                                                     href="#"
                                                     onClick={(e) => toggleDropdown('travel', e)}
-                                                    style={{ color: isActive(`/${locale}/accommodation`) || isActive(`/${locale}/travel-visa`) || openDropdown === 'travel' ? '#FFBA00' : headerBgWhite ? '#333' : '#fff', fontWeight: isActive(`/${locale}/accommodation`) || isActive(`/${locale}/travel-visa`) ? '600' : 'normal', cursor: 'pointer' }}
+                                                    className={`menu-link ${isActive(`/${locale}/accommodation`) || isActive(`/${locale}/travel-visa`) || openDropdown === 'travel' ? 'active' : ''}`}
+                                                    style={{ cursor: 'pointer' }}
                                                 >
                                                     {t('travelAccommodation')} <i className={`fa-solid ${openDropdown === 'travel' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
@@ -218,7 +223,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                 <a
                                                     href="#"
                                                     onClick={(e) => toggleDropdown('sponsorship', e)}
-                                                    style={{ color: isActive(`/${locale}/sponsorship`) || openDropdown === 'sponsorship' ? '#FFBA00' : headerBgWhite ? '#333' : '#fff', fontWeight: isActive(`/${locale}/sponsorship`) ? '600' : 'normal', cursor: 'pointer' }}
+                                                    className={`menu-link ${isActive(`/${locale}/sponsorship`) || openDropdown === 'sponsorship' ? 'active' : ''}`}
+                                                    style={{ cursor: 'pointer' }}
                                                 >
                                                     {t('sponsorship')} <i className={`fa-solid ${openDropdown === 'sponsorship' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
@@ -232,7 +238,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                 <a
                                                     href="#"
                                                     onClick={(e) => toggleDropdown('more', e)}
-                                                    style={{ color: isActive(`/${locale}/gallery`) || isActive(`/${locale}/contact`) || openDropdown === 'more' ? '#FFBA00' : headerBgWhite ? '#333' : '#fff', fontWeight: isActive(`/${locale}/gallery`) || isActive(`/${locale}/contact`) ? '600' : 'normal', cursor: 'pointer' }}
+                                                    className={`menu-link ${isActive(`/${locale}/gallery`) || isActive(`/${locale}/contact`) || openDropdown === 'more' ? 'active' : ''}`}
+                                                    style={{ cursor: 'pointer' }}
                                                 >
                                                     {t('more')} <i className={`fa-solid ${openDropdown === 'more' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
@@ -359,7 +366,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                         <div className="mobile-header-elements">
                             <div className="mobile-logo">
                                 <Link href={`/${locale}`}>
-                                    <img src="/assets/img/logo/ACCP-2026-Logo-White.png" alt="Pris 2026" style={{ height: '60px', width: 'auto' }} />
+                                    <img src="/assets/img/logo/Pris2026-logo.png" alt="Pris 2026" style={{ height: '60px', width: 'auto' }} />
                                 </Link>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
