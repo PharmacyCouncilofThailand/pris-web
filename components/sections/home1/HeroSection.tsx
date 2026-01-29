@@ -20,7 +20,7 @@ export default function HeroSection() {
                             <div className={styles.header}>
 
                                 <div className={styles.logoArea} data-aos="fade-up" data-aos-duration={900}>
-                                    <img src="/assets/img/Pris20226%20logo.png" alt="ACCP 2026 Logo" />
+                                    <img src="/assets/img/logo/Pris2026-logo.png" alt="ACCP 2026 Logo" />
                                 </div>
 
                                 <div className={styles.btnArea} data-aos="fade-up" data-aos-duration={1000}>
