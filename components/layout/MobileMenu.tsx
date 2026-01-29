@@ -31,12 +31,12 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
 
     return (
         <>
-            <div className={`mobile-sidebar mobile-sidebar1 ${isMobileMenu ? 'mobile-menu-active' : ''}`}>
+            <div id="mobile-sidebar-container" className={`mobile-sidebar mobile-sidebar1 ${isMobileMenu ? 'mobile-menu-active' : ''}`} style={{ backgroundColor: '#000' }}>
                 <div className="logosicon-area">
                     <div className="logos">
-                        <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026" style={{ height: '140px', width: 'auto', background: 'white', padding: '8px', borderRadius: '8px' }} />
+                        <img src="/assets/img/logo/Pris2026-logo.png" alt="Pris 2026" style={{ height: '70px', width: 'auto', padding: '0', borderRadius: '0' }} />
                     </div>
-                    <div className="menu-close" onClick={handleMobileMenu}>
+                    <div className="menu-close" onClick={handleMobileMenu} style={{ color: '#fff' }}>
                         <i className="fa-solid fa-xmark" />
                     </div>
                 </div>
@@ -153,12 +153,12 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                             </div>
                         ) : (
                             <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                                <Link href={`/${locale}/login`} className="vl-btn1" style={{
+                                <Link href={`/${locale}/login`} className="vl-btn1 login-btn-mobile" style={{
                                     flex: 1,
                                     textAlign: 'center',
                                     background: 'transparent',
                                     border: '2px solid #FFBA00',
-                                    color: '#FFBA00'
+                                    color: '#fff'
                                 }}>{t('login')}</Link>
                                 <Link href={`/${locale}/signup`} className="vl-btn1" style={{
                                     flex: 1,
@@ -197,13 +197,13 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                                     <div className="social-links-mobile-menu" style={{ marginTop: '16px' }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                                             <i className="fa-brands fa-facebook" style={{ fontSize: '20px', color: '#1877F2' }} />
-                                            <Link href="https://www.facebook.com/Pris2026" target="_blank" style={{ color: '#333', fontSize: '16px', fontWeight: '500' }}>
+                                            <Link href="https://www.facebook.com/Pris2026" target="_blank" style={{ color: '#fff', fontSize: '16px', fontWeight: '500' }}>
                                                 Pris2026
                                             </Link>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                             <i className="fa-brands fa-instagram" style={{ fontSize: '20px', color: '#E4405F' }} />
-                                            <Link href="https://www.instagram.com/Pris2026" target="_blank" style={{ color: '#333', fontSize: '16px', fontWeight: '500' }}>
+                                            <Link href="https://www.instagram.com/Pris2026" target="_blank" style={{ color: '#fff', fontSize: '16px', fontWeight: '500' }}>
                                                 Pris2026
                                             </Link>
                                         </div>
@@ -213,6 +213,50 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                         </div>
                     </div>
                 </div>
+                <style jsx global>{`
+                #mobile-sidebar-container.mobile-sidebar.mobile-sidebar1 {
+                    background: #000 !important;
+                    background-color: #000 !important;
+                }
+                #mobile-sidebar-container .mobile-nav.mobile-nav1 .mobile-nav-list li a,
+                #mobile-sidebar-container .mobile-nav.mobile-nav1 .mobile-nav-list li .hash-nav {
+                    color: #fff !important;
+                }
+                #mobile-sidebar-container .single-footer h3,
+                #mobile-sidebar-container .footer1-contact-info .contact-info-text a,
+                #mobile-sidebar-container .menu-close {
+                    color: #fff !important;
+                }
+                #mobile-sidebar-container .sub-menu {
+                    background: #111 !important;
+                }
+                #mobile-sidebar-container .sub-menu li a {
+                    color: #ddd !important;
+                }
+                #mobile-sidebar-container .logosicon-area {
+                    background: transparent !important;
+                }
+                #mobile-sidebar-container .login-btn-mobile {
+                    background: transparent !important;
+                    color: #fff !important;
+                    border: 2px solid #FFBA00 !important;
+                }
+                #mobile-sidebar-container .contact-info-icon span {
+                    background: #fff !important;
+                    color: #000 !important;
+                }
+                #mobile-sidebar-container .contact-info-icon span i {
+                    color: #000 !important;
+                }
+                /* NEW: Force transparent background on inner containers */
+                #mobile-sidebar-container .mobile-nav,
+                #mobile-sidebar-container .mobile-nav .mobile-nav-list,
+                #mobile-sidebar-container .allmobilesection,
+                #mobile-sidebar-container .single-footer {
+                    background: transparent !important;
+                    background-color: transparent !important;
+                }
+            `}</style>
             </div>
         </>
     )

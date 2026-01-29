@@ -200,6 +200,16 @@ html {
               padding: 0 20px;
             }
 
+            // Added default styles for menu-link to match original inline styles
+            a.menu-link {
+              color: #fff;
+
+              &.active {
+                color: #FFBA00;
+                font-weight: 600;
+              }
+            }
+
             &:hover>a {
               transition: all 0.4s;
               color: var(--ztc-text-text-4) !important;
@@ -320,9 +330,26 @@ html {
   animation-duration: 1s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  background: #ffffff;
+  background: #000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
+
+  .header-elements {
+    .main-menu {
+      ul {
+        li {
+          a.menu-link {
+            color: #fff;
+
+            &.active {
+              color: #FFBA00;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 /*============= HEADER CSS AREA ENDS ===============*/
