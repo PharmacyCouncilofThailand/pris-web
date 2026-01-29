@@ -2,153 +2,37 @@
 import { useTranslations } from 'next-intl';
 import Countdown from '@/components/elements/Countdown'
 import Link from 'next/link'
-
-const heroStyles = {
-    mainTitle: {
-        fontSize: '80px',
-        lineHeight: '1.1',
-        fontWeight: '700',
-        marginBottom: '20px'
-    },
-    titleWhite: {
-        color: '#fff'
-    },
-    titleGold: {
-        background: 'linear-gradient(135deg, #F5E6D3 0%, #E8D4A0 50%, #D4AF37 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        backgroundClip: 'text',
-        fontWeight: '700'
-    },
-    subtitle: {
-        fontSize: '50px',
-        lineHeight: '1.2',
-        fontWeight: '600',
-        color: '#fff',
-        textTransform: 'uppercase' as const,
-        marginBottom: '40px',
-        letterSpacing: '1px',
-        marginTop: '0px',
-        whiteSpace: 'nowrap' as const
-    },
-    description: {
-        fontSize: '18px',
-        lineHeight: '1.6',
-        color: '#fff',
-        marginBottom: '0'
-    }
-} as const;
+import styles from './HeroSection.module.scss'
 
 export default function HeroSection() {
     const t = useTranslations();
 
     return (
         <>
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                /* Mobile Responsive Fixes */
-                @media (max-width: 1399px) {
-                    .hero1-section-area {
-                        min-height: 100vh; /* Full screen height */
-                        padding-top: 100px;
-                        display: flex;
-                        align-items: center;
-                        position: relative;
-                        overflow: hidden;
-                    }
-                    
-                    .bg1 {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        z-index: -1;
-                    }
+            <div className={styles.section}>
+                <div className={styles.bg}>
+                    <img src="/assets/img/BG%204500x2281.webp" className={styles.headerBg} alt="" />
+                </div>
 
-                    .header-bg1 {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: 70% center; /* Show Wat Arun more clearly on mobile */
-                    }
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className={styles.header}>
 
-                    .hero1-header {
-                        margin-left: 0 !important;
-                        margin-top: 0 !important;
-                        text-align: center;
-                        padding: 0 15px;
-                    }
 
-                    /* Adjust Headline Sizes */
-                    .hero1-header h1 {
-                        font-size: 48px !important;
-                        margin-bottom: 5px !important;
-                    }
-                    
-                    .hero1-header h2 {
-                        font-size: 24px !important;
-                        margin-bottom: 20px !important;
-                    }
-                    
-                    .hero1-header p {
-                        font-size: 16px !important;
-                        margin-bottom: 24px !important;
-                    }
+                                <div className={styles.logoArea} data-aos="fade-up" data-aos-duration={900}>
+                                    <img src="/assets/img/Pris20226%20logo.png" alt="ACCP 2026 Logo" />
+                                </div>
 
-                    /* Center Buttons */
-                    .btn-area1 {
-                        display: flex;
-                        justify-content: center;
-                        flex-wrap: wrap;
-                        gap: 15px;
-                    }
+                                <div className={styles.btnArea} data-aos="fade-up" data-aos-duration={1000}>
+                                    <Link href="/registration" className={styles.orangeBtn}>{t('common.registerNow')}</Link>
+                                    <Link href="/call-for-abstracts" className={styles.orangeBtn}>{t('common.submitAbstract')}</Link>
+                                </div>
 
-                    /* Timer Responsive Fixes */
-                    .timer {
-                        position: relative !important;
-                        top: 0 !important;
-                        right: auto !important;
-                        width: 100% !important;
-                        display: flex !important;
-                        justify-content: center !important;
-                        margin-top: 40px !important;
-                        flex-wrap: wrap !important;
-                        gap: 15px !important;
-                    }
+                                <div className={styles.countdownArea} data-aos="fade-up" data-aos-duration={1100}>
+                                    <Countdown />
+                                </div>
 
-                    .timer .time-box {
-                        margin: 0 !important;
-                    }
-
-                    .timer .space14 {
-                        display: none !important;
-                    }
-                }
-
-                /* Large Screen Scaling (PC 1600px+) */
-                @media (min-width: 1600px) {
-                    .hero1-header h1 {
-                        font-size: 100px !important;
-                        margin-bottom: 24px !important;
-                    }
-                    .hero1-header h2 {
-                        font-size: 64px !important;
-                        margin-bottom: 32px !important;
-                    }
-                    .hero1-header p {
-                        font-size: 22px !important;
-                        line-height: 1.6 !important;
-                        max-width: 80%;
-                    }
-                    .btn-area1 .vl-btn1, 
-                    .btn-area1 .vl-btn2 {
-                        padding: 18px 36px !important;
-                        font-size: 18px !important;
-                    }
-                }
-            `}} />
-            <div className="hero1-section-area">
 
                 <div className="container">
                     <div className="row">
@@ -173,10 +57,6 @@ export default function HeroSection() {
                                     <Link href="/call-for-abstracts" className="vl-btn2">{t('common.submitAbstract')}</Link>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="col-xxl-1">
-                            <Countdown />
                         </div>
                     </div>
                 </div>
