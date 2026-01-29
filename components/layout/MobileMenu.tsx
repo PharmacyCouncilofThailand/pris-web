@@ -34,7 +34,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
             <div className={`mobile-sidebar mobile-sidebar1 ${isMobileMenu ? 'mobile-menu-active' : ''}`}>
                 <div className="logosicon-area">
                     <div className="logos">
-                        <img src="/assets/img/logo/accp_logo_main.png" alt="ACCP 2026" style={{ height: '140px', width: 'auto', background: 'white', padding: '8px', borderRadius: '8px' }} />
+                        <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026" style={{ height: '140px', width: 'auto', background: 'white', padding: '8px', borderRadius: '8px' }} />
                     </div>
                     <div className="menu-close" onClick={handleMobileMenu}>
                         <i className="fa-solid fa-xmark" />
@@ -44,9 +44,9 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                     <ul className="mobile-nav-list nav-list1">
                         <li className="hash-has-sub"><Link href={`/${locale}`} className="hash-nav">{t('home')}</Link></li>
                         <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 1 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(1)}><em /></span>
-                            <Link href={`/${locale}/about`} className="hash-nav">{t('aboutACCP')}</Link>
+                            <Link href={`/${locale}/about`} className="hash-nav">{t('aboutPris')}</Link>
                             <ul className={`sub-menu ${isAccordion == 1 ? "open-sub" : ""}`} style={{ display: `${isAccordion == 1 ? "block" : "none"}` }}>
-                                <li className="hash-has-sub"><Link href={`/${locale}/about`} className="hash-nav">{t('aboutACCP')}</Link></li>
+                                <li className="hash-has-sub"><Link href={`/${locale}/about`} className="hash-nav">{t('aboutPris')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/welcome-messages`} className="hash-nav">{t('welcomeMessages')}</Link></li>
                             </ul>
                         </li>
@@ -177,7 +177,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                                         <span><i className="fa-solid fa-envelope" /></span>
                                     </div>
                                     <div className="contact-info-text">
-                                        <Link href="mailto:accpbangkok2026@gmail.com">accpbangkok2026@gmail.com</Link>
+                                        <Link href="mailto:Pris2026@gmail.com">Pris2026@gmail.com</Link>
                                     </div>
                                 </div>
                                 <div className="single-footer">
@@ -197,14 +197,14 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                                     <div className="social-links-mobile-menu" style={{ marginTop: '16px' }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                                             <i className="fa-brands fa-facebook" style={{ fontSize: '20px', color: '#1877F2' }} />
-                                            <Link href="https://www.facebook.com/accpbangkok2026" target="_blank" style={{ color: '#333', fontSize: '16px', fontWeight: '500' }}>
-                                                accpbangkok2026
+                                            <Link href="https://www.facebook.com/Pris2026" target="_blank" style={{ color: '#333', fontSize: '16px', fontWeight: '500' }}>
+                                                Pris2026
                                             </Link>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                             <i className="fa-brands fa-instagram" style={{ fontSize: '20px', color: '#E4405F' }} />
-                                            <Link href="https://www.instagram.com/accpbangkok2026" target="_blank" style={{ color: '#333', fontSize: '16px', fontWeight: '500' }}>
-                                                accpbangkok2026
+                                            <Link href="https://www.instagram.com/Pris2026" target="_blank" style={{ color: '#333', fontSize: '16px', fontWeight: '500' }}>
+                                                Pris2026
                                             </Link>
                                         </div>
                                     </div>

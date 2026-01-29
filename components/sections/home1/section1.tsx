@@ -30,7 +30,7 @@ export default function Section1() {
                                 </h5>
                                 <div className="space16" />
                                 <h1 className="text-anime-style-3">
-                                    ACCP 2026
+                                    Pris 2026
                                 </h1>
                                 <div className="space16" />
                                 <p data-aos="fade-left" data-aos-duration={900}>
@@ -49,7 +49,7 @@ export default function Section1() {
                         <div className="col-lg-5">
                             <div className="header-images">
                                 <div className="img1" data-aos="zoom-in" data-aos-duration={1000}>
-                                    <img src="/assets/img/all-images/hero/hero-img1.png" alt="ACCP 2026 Conference" />
+                                    <img src="/assets/img/all-images/hero/hero-img1.png" alt="Pris 2026 Conference" />
                                 </div>
                             </div>
                         </div>

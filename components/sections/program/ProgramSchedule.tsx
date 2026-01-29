@@ -36,7 +36,7 @@ export default function ProgramSchedule() {
         const pdfUrl = '/assets/documents/program_agenda.pdf';
         const link = document.createElement('a');
         link.href = pdfUrl;
-        link.download = 'ACCP2026_Program_Agenda.pdf';
+        link.download = 'Pris2026_Program_Agenda.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

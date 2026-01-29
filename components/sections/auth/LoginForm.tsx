@@ -122,7 +122,7 @@ export default function LoginForm() {
                     boxShadow: '0 4px 24px rgba(0,0,0,0.2)'
                 }}>
                     <div style={{ marginBottom: '24px' }}>
-                        <img src="/assets/img/logo/accp_logo_main.png" alt="ACCP 2026"
+                        <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026"
                             style={{ height: '80px', width: 'auto', margin: '0 auto' }} />
                     </div>
                     <div style={{ fontSize: '48px', marginBottom: '24px' }}>⏳</div>
@@ -166,7 +166,7 @@ export default function LoginForm() {
             {/* Logo */}
             <div style={{ textAlign: 'center', marginBottom: '32px' }}>
                 <Link href={`/${locale}`}>
-                    <img src="/assets/img/logo/accp_logo_main.png" alt="ACCP 2026"
+                    <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026"
                         style={{ height: '80px', width: 'auto' }} />
                 </Link>
             </div>

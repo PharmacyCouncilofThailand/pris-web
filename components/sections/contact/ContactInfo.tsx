@@ -57,7 +57,7 @@ export default function ContactInfo() {
                             </div>
                             <div className="text" style={{ paddingLeft: 0 }}>
                                 <h5 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px', color: '#1a1a2e', textTransform: 'none' }}>{tCommon('email')}</h5>
-                                <Link href="mailto:accpbangkok2026@gmail.com" style={{ fontSize: '16px', color: '#4a4a4a', fontWeight: '500', wordBreak: 'break-all' }}>accpbangkok2026@gmail.com</Link>
+                                <Link href="mailto:Pris2026@gmail.com" style={{ fontSize: '16px', color: '#4a4a4a', fontWeight: '500', wordBreak: 'break-all' }}>Pris2026@gmail.com</Link>
                             </div>
                         </div>
                     </div>

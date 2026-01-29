@@ -87,7 +87,7 @@ export default function ExhibitionFloorPlan() {
 
                                         <div className="d-flex justify-content-center flex-column align-items-center">
                                             <a
-                                                href="mailto:accpbangkok2026@gmail.com"
+                                                href="mailto:Pris2026@gmail.com"
                                                 className="hover-scale"
                                                 style={{
                                                     display: 'inline-flex',
@@ -115,8 +115,8 @@ export default function ExhibitionFloorPlan() {
                                                 Contact Us for Sponsorship
                                             </a>
 
-                                            <a href="mailto:accpbangkok2026@gmail.com" className="mt-3" style={{ textDecoration: 'underline', color: '#fff' }}>
-                                                accpbangkok2026@gmail.com
+                                            <a href="mailto:Pris2026@gmail.com" className="mt-3" style={{ textDecoration: 'underline', color: '#fff' }}>
+                                                Pris2026@gmail.com
                                             </a>
                                         </div>
                                     </div>

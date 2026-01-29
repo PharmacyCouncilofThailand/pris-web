@@ -127,7 +127,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                         <Link href={`/${locale}`}>
                                             <img
                                                 src={(scroll || shouldShowColoredLogo) ? "/assets/img/logo/ACCP-BANGKOK-2026-04.png" : "/assets/img/logo/ACCP-2026-Logo-White.png"}
-                                                alt="ACCP 2026"
+                                                alt="Pris 2026"
                                                 style={{
                                                     height: (scroll || shouldShowColoredLogo) ? '55px' : '150px',
                                                     width: 'auto',
@@ -154,7 +154,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                     {t('about')} <i className={`fa-solid ${openDropdown === 'about' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
                                                 <ul className="dropdown-padding" style={getDropdownStyle('about')}>
-                                                    <li><Link href={`/${locale}/about`}>{t('aboutACCP')}</Link></li>
+                                                    <li><Link href={`/${locale}/about`}>{t('aboutPris')}</Link></li>
                                                     <li><Link href={`/${locale}/welcome-messages`}>{t('welcomeMessages')}</Link></li>
                                                 </ul>
                                             </li>
@@ -359,7 +359,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                         <div className="mobile-header-elements">
                             <div className="mobile-logo">
                                 <Link href={`/${locale}`}>
-                                    <img src="/assets/img/logo/ACCP-2026-Logo-White.png" alt="ACCP 2026" style={{ height: '60px', width: 'auto' }} />
+                                    <img src="/assets/img/logo/ACCP-2026-Logo-White.png" alt="Pris 2026" style={{ height: '60px', width: 'auto' }} />
                                 </Link>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

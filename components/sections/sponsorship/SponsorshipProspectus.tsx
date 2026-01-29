@@ -16,7 +16,7 @@ export default function SponsorshipProspectus() {
                             <a 
                                 href="/assets/documents/Sponsorship_Prospectus_ACCP2026.pdf" 
                                 className="vl-btn1" 
-                                download="Sponsorship_Prospectus_ACCP2026.pdf"
+                                download="Sponsorship_Prospectus_Pris2026.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

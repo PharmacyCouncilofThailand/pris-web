@@ -40,7 +40,7 @@ export default function RegistrationPolicies() {
                                         <h2>{t('pageTitle')}</h2>
                                         <div className="space16" />
                                         <p style={{ color: '#666', lineHeight: '1.8' }}>
-                                            {t('overviewDesc')} <a href="mailto:accpbangkok2026@gmail.com" style={{ color: '#1a237e', fontWeight: '600' }}>accpbangkok2026@gmail.com</a>
+                                            {t('overviewDesc')} <a href="mailto:Pris2026@gmail.com" style={{ color: '#1a237e', fontWeight: '600' }}>Pris2026@gmail.com</a>
                                         </p>
                                     </div>
                                 </div>

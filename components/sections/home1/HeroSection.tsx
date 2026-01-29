@@ -159,7 +159,7 @@ export default function HeroSection() {
                                 </h5>
                                 <div className="space16" />
                                 <h1 className="text-anime-style-3" style={{ marginBottom: '0' }}>
-                                    ACCP <span className="gold-text">2026</span>
+                                    Pris <span className="gold-text">2026</span>
                                 </h1>
                                 <h2 style={heroStyles.subtitle}>
                                     {t('hero.location')}
