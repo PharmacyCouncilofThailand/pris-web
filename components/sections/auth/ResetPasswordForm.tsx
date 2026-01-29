@@ -133,7 +133,7 @@ export default function ResetPasswordForm() {
             {/* Logo */}
             <div style={{ textAlign: 'center', marginBottom: '24px' }}>
                 <Link href={`/${locale}`}>
-                    <img src="/assets/img/logo/accp_logo_main.png" alt="ACCP 2026"
+                    <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026"
                         style={{ height: '80px', width: 'auto' }} />
                 </Link>
             </div>

@@ -108,8 +108,8 @@ export default function WelcomeSection() {
             name: "Assoc. Prof. Dr. Nattiya Kapol",
             nameTh: "รศ.ดร.ณัฏฐิยา คาพล",
             titleKey: 'welcome.organizingChair',
-            position: "Chair, ACCP 2026 Organizing Committee",
-            positionTh: "ประธานคณะกรรมการจัดงาน ACCP 2026",
+            position: "Chair, Pris 2026 Organizing Committee",
+            positionTh: "ประธานคณะกรรมการจัดงาน Pris 2026",
             image: "/assets/img/all-images/team/team-img3.jpg"
         },
         {

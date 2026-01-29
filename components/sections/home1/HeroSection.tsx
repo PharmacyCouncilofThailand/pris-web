@@ -19,7 +19,6 @@ export default function HeroSection() {
                         <div className="col-12">
                             <div className={styles.header}>
 
-
                                 <div className={styles.logoArea} data-aos="fade-up" data-aos-duration={900}>
                                     <img src="/assets/img/Pris20226%20logo.png" alt="ACCP 2026 Logo" />
                                 </div>
@@ -32,7 +31,6 @@ export default function HeroSection() {
                                 <div className={styles.countdownArea} data-aos="fade-up" data-aos-duration={1100}>
                                     <Countdown />
                                 </div>
-
 
                             </div>
                         </div>

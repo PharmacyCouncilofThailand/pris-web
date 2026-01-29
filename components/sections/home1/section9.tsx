@@ -31,7 +31,7 @@ export default function Section9() {
 									fontSize: '32px',
 									fontWeight: '700'
 								}}>
-									{t('พร้อมที่จะเข้าร่วม ACCP 2026 หรือยัง?', 'Ready to Join ACCP 2026?')}
+									{t('พร้อมที่จะเข้าร่วม Pris 2026 หรือยัง?', 'Ready to Join Pris 2026?')}
 								</h2>
 								<p style={{
 									color: 'rgba(26,26,46,0.7)',

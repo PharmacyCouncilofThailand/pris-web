@@ -11,7 +11,7 @@ export default function Section2() {
 						<div className="col-lg-6">
 							<div className="about-imges">
 								<div className="img1 reveal image-anime">
-									<img src="/assets/img/all-images/about/about-img1.png" alt="ACCP 2026 Conference" />
+									<img src="/assets/img/all-images/about/about-img1.png" alt="Pris 2026 Conference" />
 								</div>
 								<div className="row">
 									<div className="col-lg-6 col-md-6">
@@ -42,12 +42,12 @@ export default function Section2() {
 						</div>
 						<div className="col-lg-6">
 							<div className="about-header-area heading2">
-								<h5 data-aos="fade-left" data-aos-duration={800}>About ACCP 2026</h5>
+								<h5 data-aos="fade-left" data-aos-duration={800}>About Pris 2026</h5>
 								<div className="space16" />
 								<h2 className="text-anime-style-3">Borderless Pharmacy Practice</h2>
 								<div className="space16" />
 								<p data-aos="fade-left" data-aos-duration={900}>
-									The 25th Asian Conference on Clinical Pharmacy (ACCP 2026) brings together
+									The 25th Asian Conference on Clinical Pharmacy (Pris 2026) brings together
 									pharmacists, researchers, educators, and healthcare professionals from across
 									Asia and beyond. Join us in Bangkok for three days of inspiring keynotes,
 									cutting-edge research presentations, and networking opportunities.
