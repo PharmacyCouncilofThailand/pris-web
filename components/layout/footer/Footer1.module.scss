@@ -1,0 +1,64 @@
+/* components/layout/footer/Footer1.module.scss */
+
+.section {
+    padding-top: 60px;
+}
+
+.logoImage {
+    height: 60px;
+    width: auto;
+    display: block;
+    margin: 0;
+}
+
+.spacer30 {
+    height: 30px;
+}
+
+.contactList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin-bottom: 12px;
+    }
+}
+
+.contactLink {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--primary-color, #FFBA00);
+        /* Fallback if var not defined */
+    }
+
+    i {
+        width: 20px;
+        margin-right: 10px;
+    }
+}
+
+/* Specific icon colors */
+.iconEnvelope {
+    color: #EA4335;
+}
+
+.iconFacebook {
+    color: #1877F2;
+}
+
+.iconInstagram {
+    color: #E4405F;
+}
+
+.galleryImage {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    /* Optional: adds subtle polish */
+}

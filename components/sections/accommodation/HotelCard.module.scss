@@ -1,0 +1,82 @@
+@use '@/styles/variables' as *;
+
+.row {
+    margin-bottom: 30px;
+}
+
+.card {
+    padding: 0;
+    overflow: hidden;
+    border: 3px solid $primary-gold;
+    /* Inheritance from pricing-boxarea if needed, or standalone */
+    background: #fff;
+    border-radius: 12px;
+}
+
+.innerRow {
+    padding: 25px;
+}
+
+.imageContainer {
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.placeholderIcon {
+    font-size: 48px;
+}
+
+.content {
+    h4 {
+        margin-bottom: 10px;
+        color: $primary-blue;
+        font-weight: 700;
+    }
+}
+
+.location {
+    margin: 0 0 15px 0;
+    color: $text-body;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+
+    i {
+        margin-right: 8px;
+        color: $primary-gold;
+    }
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.badge {
+    background-color: #f0f0f0;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    color: #555;
+    display: flex;
+    align-items: center;
+
+    i {
+        margin-right: 5px;
+        color: #10B981;
+        font-size: 10px;
+    }
+}

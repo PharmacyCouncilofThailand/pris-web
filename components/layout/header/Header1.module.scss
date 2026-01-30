@@ -1,0 +1,136 @@
+/* Header1.module.scss */
+
+/* Dropdown visibility logic */
+.dropdownPadding {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    top: 100px;
+    /* Initial offset for animation */
+    z-index: 9;
+
+    /* Box Styling (Card Look) */
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+    display: block;
+    /* Use Simple Block for natural flow */
+    list-style: none;
+    /* Ensure no bullets */
+    margin: 0;
+
+    /* Alignment Fix */
+    text-align: left;
+    /* Inheritable left align */
+
+    &.open {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        top: 60px;
+        /* Final position */
+    }
+
+    /* List Items */
+    li {
+        display: block;
+        margin-bottom: 0;
+        padding: 0;
+        text-align: left;
+
+        &:not(:last-child) {
+            margin-bottom: 12px;
+        }
+
+        /* High specificity selector to beat global styles without !important */
+        a,
+        a:link,
+        a:visited {
+            display: block;
+            width: 100%;
+            color: #000000;
+            /* Standard black */
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            background-color: transparent;
+            /* Reset any background */
+
+            &:hover {
+                color: #FFBA00;
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+/* Header Sticky State */
+.headerSticky {
+    background: #000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Styles */
+.logoImage {
+    height: 150px;
+    width: 120px;
+    margin-left: 0;
+    margin-top: -40px;
+    margin-bottom: -40px;
+    position: relative;
+    z-index: 100;
+    transition: all 0.3s ease;
+
+    &.scrolled {
+        height: 55px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+/* Mobile Logo */
+.mobileLogo {
+    height: 60px;
+    width: auto;
+}
+
+/* Menu Link Styles (Top Level) */
+.menuLink {
+    color: #fff;
+    font-weight: normal;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    &.active {
+        color: #FFBA00;
+        font-weight: 600;
+    }
+
+    i {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+    }
+}
+
+/* Rotate caret when open (optional enhancement) */
+.dropdown-open .menuLink i {
+    transform: rotate(180deg);
+}
+
+/* Auth Buttons */
+.btnArea {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 0;
+}

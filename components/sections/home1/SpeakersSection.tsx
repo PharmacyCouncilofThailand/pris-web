@@ -1,12 +1,16 @@
-'use client'
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link'
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper as SwiperOriginal, SwiperSlide as SwiperSlideOriginal } from "swiper/react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { SwiperOptions } from 'swiper/types';
+import styles from './SpeakersSection.module.scss';
+import Image from 'next/image';
 
-const Swiper = SwiperOriginal as any;
-const SwiperSlide = SwiperSlideOriginal as any;
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface Speaker {
     id: number;
@@ -17,7 +21,7 @@ interface Speaker {
     photoUrl?: string;
 }
 
-const swiperOptions = {
+const swiperOptions: SwiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
     slidesPerView: 3,
     spaceBetween: 30,
@@ -27,7 +31,7 @@ const swiperOptions = {
     },
     loop: true,
     navigation: {
-        nextEl: '.owl-next',
+        nextEl: '.owl-next', // Keeping these classes for Swiper selector, but styling them via module if possible or global
         prevEl: '.owl-prev',
     },
     pagination: {
@@ -54,7 +58,7 @@ export default function SpeakersSection() {
     useEffect(() => {
         const fetchSpeakers = async () => {
             try {
-                console.log('Fetching speakers from:', `${API_URL}/api/speakers`);
+                // console.log('Fetching speakers from:', `${API_URL}/api/speakers`);
                 const res = await fetch(`${API_URL}/api/speakers`);
                 if (res.ok) {
                     const data = await res.json();
@@ -92,66 +96,63 @@ export default function SpeakersSection() {
     };
 
     return (
-        <>
-            <div className="team1-section-area sp1">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-6">
-                            <div className="team-header space-margin60 heading2">
-                                <h5 data-aos="fade-left" data-aos-duration={800}>{t('speakers.title')}</h5>
-                                <div className="space16" />
-                                <h2 className="text-anime-style-3">{t('speakers.subtitle')}</h2>
-                            </div>
+        <div className={`team1-section-area sp1 ${styles.section}`}>
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6">
+                        <div className={`team-header space-margin60 heading2 ${styles.header}`}>
+                            <h5 data-aos="fade-left" data-aos-duration={800}>{t('speakers.title')}</h5>
+                            <div className="space16" />
+                            <h2 className="text-anime-style-3">{t('speakers.subtitle')}</h2>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-lg-12 position-relative">
-                            {isLoading ? (
-                                <div className="text-center py-5">Loading speakers...</div>
-                            ) : (
-                                <Swiper {...swiperOptions} className="team-slider-area">
-                                    {[...displaySpeakers, ...displaySpeakers].map((speaker, index) => (
-                                        <SwiperSlide key={index} className="team-widget-boxarea">
-                                            <div className="img1 image-anime">
-                                                <img
-                                                    src={getSpeakerImageUrl(speaker.photoUrl, index)}
-                                                    alt={`${speaker.firstName} ${speaker.lastName}`}
-                                                    style={{
-                                                        width: '100%',
-                                                        height: '420px', // Fixed height for uniformity
-                                                        objectFit: 'cover',
-                                                        objectPosition: 'top center',
-                                                        borderRadius: '10px' // Optional: matches typical card rounded corners
-                                                    }}
-                                                />
-
+                </div>
+                <div className="row">
+                    <div className="col-lg-12 position-relative">
+                        {isLoading ? (
+                            <div className="text-center py-5">Loading speakers...</div>
+                        ) : (
+                            <Swiper {...swiperOptions} className={`team-slider-area ${styles.swiperContainer}`}>
+                                {[...displaySpeakers, ...displaySpeakers].map((speaker, index) => (
+                                    <SwiperSlide key={index}>
+                                        <div className={styles.slideItem}>
+                                            <div className={`${styles.imageContainer} image-anime`}>
+                                                <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                                                    <Image
+                                                        src={getSpeakerImageUrl(speaker.photoUrl, index)}
+                                                        alt={`${speaker.firstName} ${speaker.lastName}`}
+                                                        fill
+                                                        style={{ objectFit: 'cover' }}
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    />
+                                                </div>
                                             </div>
                                             <div className="space20" />
-                                            <div className="text-area">
+                                            <div className={styles.textArea}>
                                                 <Link href="/speakers">{speaker.firstName} {speaker.lastName}</Link>
                                                 <div className="space8" />
-                                                <p>{speaker.position || 'Speaker'}</p>
-                                                <p style={{ color: '#888', fontSize: '14px' }}>{speaker.organization || 'Organization TBA'}</p>
-                                                <p style={{ color: '#888', fontSize: '14px' }}>Country TBA</p>
+                                                <p className={styles.position}>{speaker.position || 'Speaker'}</p>
+                                                <p className={styles.metaInfo}>{speaker.organization || 'Organization TBA'}</p>
+                                                <p className={styles.metaInfo}>Country TBA</p>
                                             </div>
-                                        </SwiperSlide>
-                                    ))}
-                                </Swiper>
-                            )}
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        )}
 
-                            <div className="owl-nav">
-                                <button type="button" role="presentation" className="owl-prev h1p">
-                                    <i className="fa-solid fa-angle-left" />
-                                </button>
-                                <button type="button" role="presentation" className="owl-next h1n">
-                                    <i className="fa-solid fa-angle-right" />
-                                </button>
-                            </div>
+                        <div className={styles.navContainer}>
+                            <button type="button" aria-label="Previous" className={`owl-prev h1p ${styles.navBtn}`}>
+                                <i className="fa-solid fa-angle-left" />
+                            </button>
+                            <button type="button" aria-label="Next" className={`owl-next h1n ${styles.navBtn}`}>
+                                <i className="fa-solid fa-angle-right" />
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

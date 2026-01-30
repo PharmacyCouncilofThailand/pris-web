@@ -1,5 +1,8 @@
 'use client'
 import { useTranslations } from 'next-intl';
+import FormInput from '@/components/common/FormInput';
+import FormTextArea from '@/components/common/FormTextArea';
+import Button from '@/components/common/Button';
 
 export default function ContactForm() {
     const t = useTranslations('contact');
@@ -11,41 +14,42 @@ export default function ContactForm() {
             <div className="space8" />
             <div className="row">
                 <div className="col-lg-6 col-md-6">
-                    <div className="input-area">
-                        <input type="text" placeholder={t('name')} />
-                    </div>
+                    <FormInput
+                        placeholder={t('name')}
+                        type="text"
+                    />
                 </div>
                 <div className="col-lg-6 col-md-6">
-                    <div className="input-area">
-                        <input
-                            type="tel"
-                            placeholder={tCommon('phone')}
-                            onInput={(e) => {
-                                e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '')
-                            }}
-                            inputMode="numeric"
-                        />
-                    </div>
+                    <FormInput
+                        placeholder={tCommon('phone')}
+                        type="tel"
+                        onInput={(e) => {
+                            e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '')
+                        }}
+                    />
                 </div>
                 <div className="col-lg-12 col-md-6">
-                    <div className="input-area">
-                        <input type="email" placeholder={t('emailAddress')} />
-                    </div>
+                    <FormInput
+                        placeholder={t('emailAddress')}
+                        type="email"
+                    />
                 </div>
                 <div className="col-lg-12 col-md-6">
-                    <div className="input-area">
-                        <input type="text" placeholder={t('subject')} />
-                    </div>
+                    <FormInput
+                        placeholder={t('subject')}
+                        type="text"
+                    />
                 </div>
                 <div className="col-lg-12">
-                    <div className="input-area">
-                        <textarea placeholder={t('message')} />
-                    </div>
+                    <FormTextArea
+                        placeholder={t('message')}
+                        rows={4}
+                    />
                 </div>
                 <div className="col-lg-12">
                     <div className="space24" />
                     <div className="input-area text-end">
-                        <button type="submit" className="vl-btn1">{t('send')}</button>
+                        <Button type="submit" variant="primary">{t('send')}</Button>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,69 @@
+@use '@/styles/variables' as *;
+
+.section {
+    background-color: $bg-light;
+}
+
+.heading {
+    margin-bottom: 60px;
+}
+
+.visaCard {
+    margin-bottom: 20px;
+    border-left-width: 4px;
+    border-left-style: solid;
+    /* Ensure pricing-boxarea styles are inherited or composited correctly */
+}
+
+.cardGreen {
+    @extend .visaCard;
+    border-left-color: #10B981;
+}
+
+.cardBlue {
+    @extend .visaCard;
+    border-left-color: #3B82F6;
+    margin-bottom: 0;
+}
+
+.cardTitle {
+    color: $primary-blue;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem; // h5 equivalent
+    font-weight: 700;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.iconGreen {
+    color: #10B981;
+}
+
+.iconBlue {
+    color: #3B82F6;
+}
+
+.description {
+    margin: 0;
+    line-height: 1.8;
+    color: #333; // or $text-dark depending on desired contrast
+}
+
+.linkWrapper {
+    margin: 15px 0 0 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.link {
+    color: #1565c0;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

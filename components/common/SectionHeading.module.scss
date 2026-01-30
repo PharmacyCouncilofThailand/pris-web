@@ -1,0 +1,77 @@
+/* components/common/SectionHeading.module.scss */
+
+.wrapper {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &.alignLeft {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    &.alignRight {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+    }
+}
+
+.subtitle {
+    display: inline-block;
+    color: var(--primary-color, #FFBA00);
+    /* Use variable if available, else fallback */
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 2px;
+        background-color: var(--primary-color, #FFBA00);
+    }
+
+    /* Variant for when background is dark */
+    &.light {
+        color: #fff;
+
+        &::before {
+            background-color: #fff;
+        }
+    }
+}
+
+.title {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a1a1a;
+    margin-bottom: 0;
+
+    &.light {
+        color: #fff;
+    }
+}
+
+/* Responsive */
+@media only screen and (max-width: 767px) {
+    .wrapper {
+        margin-bottom: 40px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+}

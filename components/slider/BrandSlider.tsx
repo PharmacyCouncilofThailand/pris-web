@@ -2,6 +2,8 @@
 import { Swiper as SwiperOriginal, SwiperSlide as SwiperSlideOriginal } from "swiper/react"
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 
+import Image from 'next/image';
+
 const Swiper = SwiperOriginal as any;
 const SwiperSlide = SwiperSlideOriginal as any;
 
@@ -58,30 +60,18 @@ export default function BrandSlider() {
 	return (
 		<>
 			<Swiper {...swiperOptions} className="brand-slider-area owl-carousel">
-				<SwiperSlide className="brand-box">
-					<img src="/assets/img/elements/brand-img1.png" alt="" />
-				</SwiperSlide>
-				<SwiperSlide className="brand-box">
-					<img src="/assets/img/elements/brand-img2.png" alt="" />
-				</SwiperSlide>
-				<SwiperSlide className="brand-box">
-					<img src="/assets/img/elements/brand-img3.png" alt="" />
-				</SwiperSlide>
-				<SwiperSlide className="brand-box">
-					<img src="/assets/img/elements/brand-img4.png" alt="" />
-				</SwiperSlide>
-				<SwiperSlide className="brand-box">
-					<img src="/assets/img/elements/brand-img5.png" alt="" />
-				</SwiperSlide>
-				<SwiperSlide className="brand-box">
-					<img src="/assets/img/elements/brand-img6.png" alt="" />
-				</SwiperSlide>
-				<SwiperSlide className="brand-box">
-					<img src="/assets/img/elements/brand-img7.png" alt="" />
-				</SwiperSlide>
-				<SwiperSlide className="brand-box">
-					<img src="/assets/img/elements/brand-img8.png" alt="" />
-				</SwiperSlide>
+				{[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+					<SwiperSlide className="brand-box" key={num}>
+						<div style={{ position: 'relative', width: '100%', height: '100px' }}>
+							<Image
+								src={`/assets/img/elements/brand-img${num}.png`}
+								alt={`Brand ${num}`}
+								fill
+								style={{ objectFit: 'contain' }}
+							/>
+						</div>
+					</SwiperSlide>
+				))}
 			</Swiper>
 		</>
 	)

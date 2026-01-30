@@ -1,0 +1,121 @@
+@use '@/styles/variables' as *;
+@use "sass:color";
+
+.section {
+    padding: 60px 0;
+    background: $bg-white;
+}
+
+.titleWrapper {
+    margin-bottom: 40px;
+}
+
+.mainTitle {
+    font-size: 32px;
+    font-weight: 800;
+    color: $primary-text;
+    border-bottom: 4px solid $primary-gold;
+    padding-bottom: 16px;
+    display: inline-block;
+}
+
+.committeeBlock {
+    margin-bottom: 50px;
+}
+
+.categoryTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333333; // Dark gray, specific to design
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: $bg-white;
+
+    tr {
+        border-bottom: 1px solid $border-light;
+
+        &:nth-child(even) {
+            background: $bg-light;
+        }
+
+        &:nth-child(odd) {
+            background: $bg-white;
+        }
+    }
+
+    td {
+        padding: 12px 16px;
+        color: #333333;
+        vertical-align: top;
+    }
+}
+
+.organizingTable {
+    @extend .table;
+
+    td:nth-child(1) {
+        // Title
+        font-weight: 500;
+        width: 15%;
+    }
+
+    td:nth-child(2) {
+        // Colon
+        width: 3%;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+.standardTable {
+    @extend .table;
+
+    td:nth-child(1) {
+        // Name
+        font-weight: 500;
+        width: 35%;
+        line-height: 1.6;
+    }
+
+    td:nth-child(2) {
+        // Affiliation
+        color: $text-body;
+        line-height: 1.6;
+    }
+}
+
+.decorativeRow {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.decorativeBox {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    opacity: 0.8;
+}
+
+/* Gradient Variants */
+.gradientBlue {
+    background: linear-gradient(135deg, $primary-blue 0%, color.adjust($primary-blue, $lightness: 10%) 100%);
+}
+
+.gradientGold {
+    background: linear-gradient(135deg, $primary-gold 0%, color.adjust($primary-gold, $lightness: 10%) 100%);
+}
+
+.gradientTeal {
+    background: linear-gradient(135deg, #00897b 0%, #26a69a 100%);
+}

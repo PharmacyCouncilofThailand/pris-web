@@ -1,79 +1,88 @@
-'use client'
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { logger } from '@/utils/logger';
+import FormInput from '@/components/common/FormInput';
+import Button from '@/components/common/Button';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { createLoginSchema, LoginFormData } from '@/lib/schemas/auth';
 
 export default function LoginForm() {
     const t = useTranslations('login');
+    const tCommon = useTranslations('common');
     const locale = useLocale();
     const router = useRouter();
     const { login } = useAuth();
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
     const [showPendingModal, setShowPendingModal] = useState(false);
+    const [globalError, setGlobalError] = useState('');
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
-        setError('');
+    const loginSchema = useMemo(() => createLoginSchema(tCommon), [tCommon]);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        setError
+    } = useForm<LoginFormData>({
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+            rememberMe: false
+        }
+    });
+
+    const onSubmit = async (data: LoginFormData) => {
+        setGlobalError('');
 
         try {
-            // Validation
-            if (!email || !password) {
-                setError(locale === 'th' ? 'กรุณากรอกข้อมูลให้ครบถ้วน' : 'Please fill in all fields');
-                setIsLoading(false);
-                return;
-            }
-
             // Real API Call
             const API_URL = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
             const response = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({
+                    email: data.email,
+                    password: data.password
+                })
             });
 
-            const data = await response.json();
+            const responseData = await response.json();
 
             if (!response.ok) {
                 // Handle specific errors
                 if (response.status === 401) {
-                    setError(locale === 'th' ? 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' : 'Invalid email or password');
+                    setGlobalError(t('invalidCredentials'));
                 } else if (response.status === 403) {
-                    if (data.error === 'ACCOUNT_PENDING') {
+                    if (responseData.error === 'ACCOUNT_PENDING') {
                         setShowPendingModal(true);
-                    } else if (data.error === 'ACCOUNT_REJECTED') {
-                        setError(locale === 'th' ? 'บัญชีของคุณถูกปฏิเสธ กรุณาติดต่อเจ้าหน้าที่' : 'Your account has been rejected. Please contact support.');
+                    } else if (responseData.error === 'ACCOUNT_REJECTED') {
+                        setGlobalError(t('accountRejected'));
                     } else {
-                        setError(locale === 'th' ? 'บัญชีของคุณถูกระงับ กรุณาติดต่อเจ้าหน้าที่' : 'Account suspended. Please contact support.');
+                        setGlobalError(t('accountSuspended'));
                     }
                 } else {
-                    setError(data.error || (locale === 'th' ? 'เข้าสู่ระบบไม่สำเร็จ' : 'Login failed'));
+                    setGlobalError(responseData.error || t('loginFailed'));
                 }
-                setIsLoading(false);
                 return;
             }
-            
+
             // Login Success - pass token to login (stored based on rememberMe)
             login({
-                firstName: data.user.firstName,
-                lastName: data.user.lastName,
-                email: data.user.email,
-                country: data.user.country,
-                isThai: data.user.isThai,
-                delegateType: data.user.delegateType,
-                idCard: data.user.idCard
-            }, data.token);
-            
+                firstName: responseData.user.firstName,
+                lastName: responseData.user.lastName,
+                email: responseData.user.email,
+                country: responseData.user.country,
+                isThai: responseData.user.isThai,
+                delegateType: responseData.user.delegateType,
+                idCard: responseData.user.idCard
+            }, responseData.token);
+
             // Handle Remember Me - use localStorage for persistent, sessionStorage for temporary
-            if (!rememberMe) {
+            if (!data.rememberMe) {
                 // Move token to sessionStorage instead of localStorage (will be cleared on browser close)
                 const token = localStorage.getItem('accp_token');
                 const user = localStorage.getItem('accp_user');
@@ -84,224 +93,182 @@ export default function LoginForm() {
                     localStorage.removeItem('accp_user');
                 }
             }
-            
+
             // Redirect
             router.push(`/${locale}`);
         } catch (err) {
             logger.error('Login error', err, { component: 'LoginForm' });
-            setError(locale === 'th' ? 'เข้าสู่ระบบไม่สำเร็จ กรุณาลองใหม่อีกครั้ง' : 'Login failed. Please try again.');
-        } finally {
-            setIsLoading(false);
+            setGlobalError(t('loginFailedTryAgain'));
         }
     };
 
+    // Helper for explicit errors type which might not be in the types yet for older versions
+    const isLoading = isSubmitting;
+
     return (
         <>
-        {/* Pending Approval Modal */}
-        {showPendingModal && (
-            <div style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'rgba(0,0,0,0.5)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 1000,
-                padding: '20px'
-            }}>
+            {/* Pending Approval Modal */}
+            {showPendingModal && (
                 <div style={{
-                    background: '#fff',
-                    borderRadius: '16px',
-                    padding: '40px',
-                    width: '100%',
-                    maxWidth: '400px',
-                    textAlign: 'center',
-                    boxShadow: '0 4px 24px rgba(0,0,0,0.2)'
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'rgba(0,0,0,0.5)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    zIndex: 1000,
+                    padding: '20px'
                 }}>
-                    <div style={{ marginBottom: '24px' }}>
-                        <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026"
-                            style={{ height: '80px', width: 'auto', margin: '0 auto' }} />
+                    <div style={{
+                        background: '#fff',
+                        borderRadius: '16px',
+                        padding: '40px',
+                        width: '100%',
+                        maxWidth: '400px',
+                        textAlign: 'center',
+                        boxShadow: '0 4px 24px rgba(0,0,0,0.2)'
+                    }}>
+                        <div style={{ marginBottom: '24px' }}>
+                            <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026"
+                                style={{ height: '80px', width: 'auto', margin: '0 auto' }} />
+                        </div>
+                        <div style={{ fontSize: '48px', marginBottom: '24px' }}>⏳</div>
+                        <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1a1a1a', marginBottom: '16px' }}>
+                            {t('accountUnderReview')}
+                        </h3>
+                        <p style={{ color: '#666', fontSize: '16px', marginBottom: '32px', lineHeight: '1.6' }}>
+                            {t('accountUnderReviewDesc')}
+                        </p>
+                        <button
+                            onClick={() => setShowPendingModal(false)}
+                            style={{
+                                display: 'inline-block',
+                                padding: '12px 24px',
+                                background: '#1a237e',
+                                color: '#fff',
+                                borderRadius: '8px',
+                                border: 'none',
+                                fontWeight: '600',
+                                fontSize: '15px',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s ease',
+                                width: '100%'
+                            }}
+                        >
+                            {tCommon('ok')}
+                        </button>
                     </div>
-                    <div style={{ fontSize: '48px', marginBottom: '24px' }}>⏳</div>
-                    <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1a1a1a', marginBottom: '16px' }}>
-                        {locale === 'th' ? 'กำลังตรวจสอบบัญชี' : 'Account Under Review'}
-                    </h3>
-                    <p style={{ color: '#666', fontSize: '16px', marginBottom: '32px', lineHeight: '1.6' }}>
-                        {locale === 'th' 
-                            ? 'บัญชีของท่านอยู่ระหว่างการตรวจสอบ โปรดลองอีกครั้งภายหลังจากได้รับอีเมลยืนยัน' 
-                            : 'Your account is under review. Please try again after receiving the confirmation email.'}
-                    </p>
-                    <button 
-                        onClick={() => setShowPendingModal(false)}
-                        style={{
-                            display: 'inline-block',
-                            padding: '12px 24px',
-                            background: '#1a237e',
-                            color: '#fff',
-                            borderRadius: '8px',
-                            border: 'none',
-                            fontWeight: '600',
-                            fontSize: '15px',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease',
-                            width: '100%'
-                        }}
-                    >
-                        {locale === 'th' ? 'ตกลง' : 'OK'}
-                    </button>
-                </div>
-            </div>
-        )}
-        <div style={{
-            background: '#fff',
-            borderRadius: '16px',
-            padding: '40px',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
-            maxWidth: '420px',
-            margin: '0 auto'
-        }}>
-            {/* Logo */}
-            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                <Link href={`/${locale}`}>
-                    <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026"
-                        style={{ height: '80px', width: 'auto' }} />
-                </Link>
-            </div>
-
-            {/* Title */}
-            <h2 style={{
-                fontSize: '24px', fontWeight: '600', color: '#1a1a1a',
-                textAlign: 'center', marginBottom: '8px'
-            }}>
-                {locale === 'th' ? 'เข้าสู่ระบบ' : 'Sign In'}
-            </h2>
-            <p style={{ textAlign: 'center', color: '#666', fontSize: '14px', marginBottom: '32px' }}>
-                {locale === 'th' ? 'กรอกอีเมลและรหัสผ่านเพื่อเข้าสู่ระบบ' : 'Enter your email and password to sign in'}
-            </p>
-
-            {/* Error Message */}
-            {error && (
-                <div style={{
-                    padding: '12px 16px',
-                    background: '#ffebee',
-                    border: '1px solid #ef5350',
-                    borderRadius: '8px',
-                    color: '#c62828',
-                    fontSize: '14px',
-                    marginBottom: '20px',
-                    textAlign: 'center'
-                }}>
-                    {error}
                 </div>
             )}
-
-            {/* Form */}
-            <form onSubmit={handleSubmit}>
-                {/* Email */}
-                <div style={{ marginBottom: '20px' }}>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#333', marginBottom: '8px' }}>
-                        {t('email')} <span style={{ color: '#e53935' }}>*</span>
-                    </label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="email@example.com"
-                        required
-                        style={{
-                            width: '100%',
-                            padding: '14px 16px',
-                            fontSize: '15px',
-                            border: '1px solid #e0e0e0',
-                            borderRadius: '8px',
-                            outline: 'none',
-                            transition: 'border-color 0.2s',
-                            boxSizing: 'border-box'
-                        }}
-                        onFocus={(e) => e.target.style.borderColor = '#1a237e'}
-                        onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                    />
-                </div>
-
-                {/* Password */}
-                <div style={{ marginBottom: '20px' }}>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#333', marginBottom: '8px' }}>
-                        {t('password')} <span style={{ color: '#e53935' }}>*</span>
-                    </label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="••••••••"
-                        required
-                        style={{
-                            width: '100%',
-                            padding: '14px 16px',
-                            fontSize: '15px',
-                            border: '1px solid #e0e0e0',
-                            borderRadius: '8px',
-                            outline: 'none',
-                            transition: 'border-color 0.2s',
-                            boxSizing: 'border-box'
-                        }}
-                        onFocus={(e) => e.target.style.borderColor = '#1a237e'}
-                        onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                    />
-                </div>
-
-                {/* Remember Me & Forgot Password */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '14px', color: '#666' }}>
-                        <input
-                            type="checkbox"
-                            checked={rememberMe}
-                            onChange={(e) => setRememberMe(e.target.checked)}
-                            style={{ width: '16px', height: '16px', accentColor: '#1a237e' }}
-                        />
-                        {t('rememberMe')}
-                    </label>
-                    <Link href={`/${locale}/forgot-password`} style={{ fontSize: '14px', color: '#1a237e', textDecoration: 'none', fontWeight: '500' }}>
-                        {t('forgotPassword')}
+            <div style={{
+                background: '#fff',
+                borderRadius: '16px',
+                padding: '40px',
+                boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+                maxWidth: '420px',
+                margin: '0 auto'
+            }}>
+                {/* Logo */}
+                <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                    <Link href={`/${locale}`}>
+                        <img src="/assets/img/logo/accp_logo_main.png" alt="Pris 2026"
+                            style={{ height: '80px', width: 'auto' }} />
                     </Link>
                 </div>
 
-                {/* Submit Button */}
-                <button
-                    type="submit"
-                    disabled={isLoading}
-                    style={{
-                        width: '100%',
-                        padding: '14px',
-                        background: isLoading ? '#9fa8da' : '#1a237e',
-                        border: 'none',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        fontSize: '16px',
-                        fontWeight: '600',
-                        cursor: isLoading ? 'not-allowed' : 'pointer',
-                        transition: 'background 0.2s'
-                    }}
-                >
-                    {isLoading
-                        ? (locale === 'th' ? 'กำลังเข้าสู่ระบบ...' : 'Signing in...')
-                        : t('signIn')
-                    }
-                </button>
-            </form>
-
-            {/* Sign Up Link */}
-            <div style={{ textAlign: 'center', marginTop: '24px' }}>
-                <p style={{ fontSize: '14px', color: '#666' }}>
-                    {t('noAccount')}{' '}
-                    <Link href={`/${locale}/signup`} style={{ color: '#1a237e', fontWeight: '600', textDecoration: 'none' }}>
-                        {t('signUp')}
-                    </Link>
+                {/* Title */}
+                <h2 style={{
+                    fontSize: '24px', fontWeight: '600', color: '#1a1a1a',
+                    textAlign: 'center', marginBottom: '8px'
+                }}>
+                    {locale === 'th' ? 'เข้าสู่ระบบ' : 'Sign In'}
+                </h2>
+                <p style={{ textAlign: 'center', color: '#666', fontSize: '14px', marginBottom: '32px' }}>
+                    {locale === 'th' ? 'กรอกอีเมลและรหัสผ่านเพื่อเข้าสู่ระบบ' : 'Enter your email and password to sign in'}
                 </p>
+
+                {/* Global Error Message */}
+                {globalError && (
+                    <div style={{
+                        padding: '12px 16px',
+                        background: '#ffebee',
+                        border: '1px solid #ef5350',
+                        borderRadius: '8px',
+                        color: '#c62828',
+                        fontSize: '14px',
+                        marginBottom: '20px',
+                        textAlign: 'center'
+                    }}>
+                        {globalError}
+                    </div>
+                )}
+
+                {/* Form */}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <FormInput
+                        id="email"
+                        label={`${t('email')} *`}
+                        type="email"
+                        placeholder="email@example.com"
+                        icon="fa-regular fa-envelope"
+                        error={errors.email?.message}
+                        {...register('email')}
+                    />
+
+                    <FormInput
+                        id="password"
+                        label={`${t('password')} *`}
+                        isPassword
+                        placeholder="••••••••"
+                        icon="fa-solid fa-lock"
+                        style={{ marginBottom: '10px' }}
+                        error={errors.password?.message}
+                        {...register('password')}
+                    />
+
+                    {/* Remember Me & Forgot Password */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '14px', color: '#666' }}>
+                            <input
+                                type="checkbox"
+                                style={{ width: '16px', height: '16px', accentColor: '#1a237e' }}
+                                {...register('rememberMe')}
+                            />
+                            {t('rememberMe')}
+                        </label>
+                        <Link href={`/${locale}/forgot-password`} style={{ fontSize: '14px', color: '#1a237e', textDecoration: 'none', fontWeight: '500' }}>
+                            {t('forgotPassword')}
+                        </Link>
+                    </div>
+
+                    {/* Submit Button */}
+                    <Button
+                        type="submit"
+                        disabled={isLoading}
+                        fullWidth
+                        variant="primary"
+                        loading={isLoading}
+                    >
+                        {isLoading
+                            ? t('signingIn')
+                            : t('signIn')
+                        }
+                    </Button>
+                </form>
+
+                {/* Sign Up Link */}
+                <div style={{ textAlign: 'center', marginTop: '24px' }}>
+                    <p style={{ fontSize: '14px', color: '#666' }}>
+                        {t('noAccount')}{' '}
+                        <Link href={`/${locale}/signup`} style={{ color: '#1a237e', fontWeight: '600', textDecoration: 'none' }}>
+                            {t('signUp')}
+                        </Link>
+                    </p>
+                </div>
             </div>
-        </div>
         </>
     );
 }

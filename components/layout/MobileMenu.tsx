@@ -5,6 +5,9 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import UserProfileDropdown from './header/UserProfileDropdown';
+import Image from 'next/image';
+import Button from '@/components/common/Button';
+import styles from './MobileMenu.module.scss';
 
 interface MobileMenuProps {
     isMobileMenu: boolean;
@@ -31,12 +34,18 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
 
     return (
         <>
-            <div id="mobile-sidebar-container" className={`mobile-sidebar mobile-sidebar1 ${isMobileMenu ? 'mobile-menu-active' : ''}`} style={{ backgroundColor: '#000' }}>
+            <div id="mobile-sidebar-container" className={`mobile-sidebar mobile-sidebar1 ${isMobileMenu ? 'mobile-menu-active' : ''} ${styles.mobileSidebar}`}>
                 <div className="logosicon-area">
                     <div className="logos">
-                        <img src="/assets/img/logo/Pris2026-logo.png" alt="Pris 2026" style={{ height: '70px', width: 'auto', padding: '0', borderRadius: '0' }} />
+                        <Image
+                            src="/assets/img/logo/Pris2026-logo.png"
+                            alt="Pris 2026"
+                            width={120}
+                            height={70}
+                            className={styles.logoImage}
+                        />
                     </div>
-                    <div className="menu-close" onClick={handleMobileMenu} style={{ color: '#fff' }}>
+                    <div className="menu-close" onClick={handleMobileMenu}>
                         <i className="fa-solid fa-xmark" />
                     </div>
                 </div>
@@ -45,14 +54,14 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                         <li className="hash-has-sub"><Link href={`/${locale}`} className="hash-nav">{t('home')}</Link></li>
                         <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 1 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(1)}><em /></span>
                             <Link href={`/${locale}/about`} className="hash-nav">{t('aboutPris')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 1 ? "open-sub" : ""}`} style={{ display: `${isAccordion == 1 ? "block" : "none"}` }}>
+                            <ul className={`sub-menu ${isAccordion == 1 ? "open-sub" : ""}`}>
                                 <li className="hash-has-sub"><Link href={`/${locale}/about`} className="hash-nav">{t('aboutPris')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/welcome-messages`} className="hash-nav">{t('welcomeMessages')}</Link></li>
                             </ul>
                         </li>
                         <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 2 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(2)}><em /></span>
                             <Link href={`/${locale}/program`} className="hash-nav">{t('program')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 2 ? "open-sub" : ""}`} style={{ display: `${isAccordion == 2 ? "block" : "none"}` }}>
+                            <ul className={`sub-menu ${isAccordion == 2 ? "open-sub" : ""}`}>
                                 <li className="hash-has-sub"><Link href={`/${locale}/program`} className="hash-nav">{t('programOverview')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/program-plenary`} className="hash-nav">{t('plenaryKeynotes')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/program-symposium`} className="hash-nav">{t('symposia')}</Link></li>
@@ -63,28 +72,28 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                         </li>
                         <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 3 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(3)}><em /></span>
                             <Link href={`/${locale}/call-for-abstracts`} className="hash-nav">{t('callForAbstracts')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 3 ? "open-sub" : ""}`} style={{ display: `${isAccordion == 3 ? "block" : "none"}` }}>
+                            <ul className={`sub-menu ${isAccordion == 3 ? "open-sub" : ""}`}>
                                 <li className="hash-has-sub"><Link href={`/${locale}/abstract-submission-guideline`} className="hash-nav">{t('abstractGuideline')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/call-for-abstracts`} className="hash-nav">{t('callForAbstracts')}</Link></li>
                             </ul>
                         </li>
                         <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 4 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(4)}><em /></span>
                             <Link href={`/${locale}/registration`} className="hash-nav">{t('registration')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 4 ? "open-sub" : ""}`} style={{ display: `${isAccordion == 4 ? "block" : "none"}` }}>
+                            <ul className={`sub-menu ${isAccordion == 4 ? "open-sub" : ""}`}>
                                 <li className="hash-has-sub"><Link href={`/${locale}/registration`} className="hash-nav">{t('registrationInfo')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/registration-policies`} className="hash-nav">{t('policies')}</Link></li>
                             </ul>
                         </li>
                         <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 5 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(5)}><em /></span>
                             <Link href={`/${locale}/accommodation`} className="hash-nav">{t('travelAccommodation')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 5 ? "open-sub" : ""}`} style={{ display: `${isAccordion == 5 ? "block" : "none"}` }}>
+                            <ul className={`sub-menu ${isAccordion == 5 ? "open-sub" : ""}`}>
                                 <li className="hash-has-sub"><Link href={`/${locale}/accommodation`} className="hash-nav">{t('hotelsRates')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/travel-visa`} className="hash-nav">{t('travelVisa')}</Link></li>
                             </ul>
                         </li>
                         <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 6 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(6)}><em /></span>
                             <Link href={`/${locale}/sponsorship`} className="hash-nav">{t('sponsorship')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 6 ? "open-sub" : ""}`} style={{ display: `${isAccordion == 6 ? "block" : "none"}` }}>
+                            <ul className={`sub-menu ${isAccordion == 6 ? "open-sub" : ""}`}>
                                 <li className="hash-has-sub"><Link href={`/${locale}/sponsorship/confirmed-sponsors`} className="hash-nav">{t('confirmedSponsors')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/sponsorship/sponsorship-prospectus`} className="hash-nav">{t('sponsorshipProspectusMenu')}</Link></li>
                                 <li className="hash-has-sub"><Link href={`/${locale}/sponsorship/exhibition-floor-plan`} className="hash-nav">{t('exhibitionFloorPlan')}</Link></li>
@@ -95,78 +104,26 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                     </ul>
 
                     <div className="allmobilesection">
-                        {/* Language Switcher Hidden */}
-                        {/* <div style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            gap: '4px',
-                            padding: '10px 0',
-                            marginBottom: '20px',
-                            position: 'relative',
-                            zIndex: 10
-                        }}>
-                            <Link
-                                href={`/th${getPathWithoutLocale()}`}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    width: '44px',
-                                    height: '44px',
-                                    background: locale === 'th' ? '#FFBA00' : '#E0E0E0',
-                                    color: locale === 'th' ? '#fff' : '#000',
-                                    textDecoration: 'none',
-                                    fontSize: '16px',
-                                    fontWeight: '600',
-                                    transition: 'all 0.3s ease',
-                                    border: 'none',
-                                    cursor: 'pointer'
-                                }}
-                            >
-                                TH
-                            </Link>
-                            <Link
-                                href={`/en${getPathWithoutLocale()}`}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    width: '44px',
-                                    height: '44px',
-                                    background: locale === 'en' ? '#FFBA00' : '#E0E0E0',
-                                    color: locale === 'en' ? '#fff' : '#000',
-                                    textDecoration: 'none',
-                                    fontSize: '16px',
-                                    fontWeight: '600',
-                                    transition: 'all 0.3s ease',
-                                    border: 'none',
-                                    cursor: 'pointer'
-                                }}
-                            >
-                                EN
-                            </Link>
-                        </div> */}
-
                         {isAuthenticated ? (
                             <div style={{ padding: '20px 0' }}>
                                 <UserProfileDropdown />
                             </div>
                         ) : (
-                            <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                                <Link href={`/${locale}/login`} className="vl-btn1 login-btn-mobile" style={{
-                                    flex: 1,
-                                    textAlign: 'center',
-                                    background: 'transparent',
-                                    border: '2px solid #FFBA00',
-                                    color: '#fff'
-                                }}>{t('login')}</Link>
-                                <Link href={`/${locale}/signup`} className="vl-btn1" style={{
-                                    flex: 1,
-                                    textAlign: 'center',
-                                    background: 'linear-gradient(135deg, #00C853 0%, #69F0AE 100%)',
-                                    border: 'none',
-                                    color: '#fff'
-                                }}>{t('signUp')}</Link>
+                            <div className={styles.authButtons}>
+                                <Button
+                                    as={Link}
+                                    href={`/${locale}/login`}
+                                    variant="outline"
+                                >
+                                    {t('login')}
+                                </Button>
+                                <Button
+                                    as={Link}
+                                    href={`/${locale}/signup`}
+                                    variant="primary"
+                                >
+                                    {t('signUp')}
+                                </Button>
                             </div>
                         )}
                         <div className="single-footer">
@@ -194,16 +151,16 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                                 </div>
                                 <div className="single-footer">
                                     <h3>{t('followUs')}</h3>
-                                    <div className="social-links-mobile-menu" style={{ marginTop: '16px' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-                                            <i className="fa-brands fa-facebook" style={{ fontSize: '20px', color: '#1877F2' }} />
-                                            <Link href="https://www.facebook.com/Pris2026" target="_blank" style={{ color: '#fff', fontSize: '16px', fontWeight: '500' }}>
+                                    <div className={styles.socialLinks}>
+                                        <div className={styles.socialItem}>
+                                            <i className={`fa-brands fa-facebook ${styles.socialIconFb}`} />
+                                            <Link href="https://www.facebook.com/Pris2026" target="_blank">
                                                 Pris2026
                                             </Link>
                                         </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                            <i className="fa-brands fa-instagram" style={{ fontSize: '20px', color: '#E4405F' }} />
-                                            <Link href="https://www.instagram.com/Pris2026" target="_blank" style={{ color: '#fff', fontSize: '16px', fontWeight: '500' }}>
+                                        <div className={styles.socialItem}>
+                                            <i className={`fa-brands fa-instagram ${styles.socialIconIg}`} />
+                                            <Link href="https://www.instagram.com/Pris2026" target="_blank">
                                                 Pris2026
                                             </Link>
                                         </div>
@@ -213,50 +170,6 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                         </div>
                     </div>
                 </div>
-                <style jsx global>{`
-                #mobile-sidebar-container.mobile-sidebar.mobile-sidebar1 {
-                    background: #000 !important;
-                    background-color: #000 !important;
-                }
-                #mobile-sidebar-container .mobile-nav.mobile-nav1 .mobile-nav-list li a,
-                #mobile-sidebar-container .mobile-nav.mobile-nav1 .mobile-nav-list li .hash-nav {
-                    color: #fff !important;
-                }
-                #mobile-sidebar-container .single-footer h3,
-                #mobile-sidebar-container .footer1-contact-info .contact-info-text a,
-                #mobile-sidebar-container .menu-close {
-                    color: #fff !important;
-                }
-                #mobile-sidebar-container .sub-menu {
-                    background: #111 !important;
-                }
-                #mobile-sidebar-container .sub-menu li a {
-                    color: #ddd !important;
-                }
-                #mobile-sidebar-container .logosicon-area {
-                    background: transparent !important;
-                }
-                #mobile-sidebar-container .login-btn-mobile {
-                    background: transparent !important;
-                    color: #fff !important;
-                    border: 2px solid #FFBA00 !important;
-                }
-                #mobile-sidebar-container .contact-info-icon span {
-                    background: #fff !important;
-                    color: #000 !important;
-                }
-                #mobile-sidebar-container .contact-info-icon span i {
-                    color: #000 !important;
-                }
-                /* NEW: Force transparent background on inner containers */
-                #mobile-sidebar-container .mobile-nav,
-                #mobile-sidebar-container .mobile-nav .mobile-nav-list,
-                #mobile-sidebar-container .allmobilesection,
-                #mobile-sidebar-container .single-footer {
-                    background: transparent !important;
-                    background-color: transparent !important;
-                }
-            `}</style>
             </div>
         </>
     )
