@@ -1,51 +1,175 @@
 /* components/layout/MobileMenu.module.scss */
 
-.mobileSidebar {
+/* Target ID with !important to override stubborn global template styles */
+:global(#mobile-sidebar-container).mobileSidebar {
     background: #000 !important;
     background-color: #000 !important;
+    color: #fff;
 
-    /* Force transparent background on inner containers */
-    & :global(.mobile-nav),
-    & :global(.mobile-nav .mobile-nav-list),
-    & :global(.allmobilesection),
-    & :global(.single-footer),
-    & :global(.logosicon-area) {
-        background: transparent !important;
-        background-color: transparent !important;
+    /* Ensure sidebar is scrollable if content overflows */
+    overflow-y: auto;
+
+    /* Ensure all child text is white by default unless overridden */
+    div,
+    h3,
+    p,
+    span,
+    a,
+    i {
+        color: #fff;
     }
 
-    & :global(.mobile-nav.mobile-nav1 .mobile-nav-list li a),
-    & :global(.mobile-nav.mobile-nav1 .mobile-nav-list li .hash-nav) {
-        color: #fff !important;
+    /* Logo Area */
+    :global(.logosicon-area) {
+        background: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
     }
 
-    & :global(.single-footer h3),
-    & :global(.footer1-contact-info .contact-info-text a),
-    & :global(.menu-close) {
-        color: #fff !important;
-    }
+    /* Menu List */
+    .navList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
 
-    & :global(.sub-menu) {
-        background: #111 !important;
-        display: none;
+        li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
 
-        &.open-sub {
-            display: block !important;
+            /* Header Row Container */
+            .menuHeader {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
+
+            a,
+            .menuTitle {
+                display: block;
+                padding: 15px 20px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 500;
+                text-decoration: none;
+                transition: color 0.3s;
+                flex-grow: 1;
+                cursor: pointer;
+                /* Ensure pointer cursor for non-links */
+
+                &:hover {
+                    color: #FFBA00;
+                }
+            }
+
+            /* Submenu Toggle Button */
+            .submenuButton {
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                background: rgba(255, 255, 255, 0.05);
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+                /* Hide legacy pseudo-elements from main.css that might be interfering */
+                &::before,
+                &::after {
+                    content: none !important;
+                    display: none !important;
+                }
+
+                em {
+                    display: block;
+                    width: 14px;
+                    height: 14px;
+                    position: relative;
+                    transition: all 0.3s ease;
+
+                    /* Horizontal Line */
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background-color: #fff;
+                        transform: translateY(-50%);
+                        transition: all 0.3s ease;
+                    }
+
+                    /* Vertical Line */
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        width: 2px;
+                        height: 100%;
+                        background-color: #fff;
+                        transform: translateX(-50%);
+                        transition: all 0.3s ease;
+                    }
+                }
+
+                /* When opened, turn to Minus */
+                &.submenuOpened em {
+                    /* Rotate to add style, or just fade out vertical line */
+                    transform: rotate(180deg);
+
+                    /* Hide vertical line to make it a Minus */
+                    &::after {
+                        opacity: 0;
+                        transform: translateX(-50%) rotate(90deg);
+                        /* Nice effect */
+                    }
+                }
+            }
+
+            /* Submenu Container */
+            .subMenu {
+                display: none;
+                /* Hidden by default */
+                background-color: #111;
+                padding-left: 20px;
+
+                &.openSub {
+                    display: block;
+                    /* Shown when open */
+                    animation: slideDown 0.3s ease-out forwards;
+                }
+
+                li {
+                    border-bottom: none;
+
+                    a {
+                        font-size: 14px;
+                        color: #ccc;
+                        padding: 10px 0;
+
+                        &:hover {
+                            color: #FFBA00;
+                        }
+                    }
+                }
+            }
         }
+    }
+}
 
-        /* Nesting for list items */
-        li a {
-            color: #ddd !important;
-        }
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
     }
 
-    & :global(.contact-info-icon span) {
-        background: #fff !important;
-        color: #000 !important;
-
-        i {
-            color: #000 !important;
-        }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

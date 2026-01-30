@@ -49,58 +49,112 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: MobileMen
                         <i className="fa-solid fa-xmark" />
                     </div>
                 </div>
-                <div className="mobile-nav mobile-nav1">
-                    <ul className="mobile-nav-list nav-list1">
-                        <li className="hash-has-sub"><Link href={`/${locale}`} className="hash-nav">{t('home')}</Link></li>
-                        <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 1 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(1)}><em /></span>
-                            <Link href={`/${locale}/about`} className="hash-nav">{t('aboutPris')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 1 ? "open-sub" : ""}`}>
-                                <li className="hash-has-sub"><Link href={`/${locale}/about`} className="hash-nav">{t('aboutPris')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/welcome-messages`} className="hash-nav">{t('welcomeMessages')}</Link></li>
-                            </ul>
-                        </li>
-                        <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 2 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(2)}><em /></span>
-                            <Link href={`/${locale}/program`} className="hash-nav">{t('program')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 2 ? "open-sub" : ""}`}>
-                                <li className="hash-has-sub"><Link href={`/${locale}/program`} className="hash-nav">{t('programOverview')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/program-plenary`} className="hash-nav">{t('plenaryKeynotes')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/program-symposium`} className="hash-nav">{t('symposia')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/program-oral-poster`} className="hash-nav">{t('oralPoster')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/gala-dinner`} className="hash-nav">{t('galaDinner')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/preconference-workshops`} className="hash-nav">{t('workshops')}</Link></li>
-                            </ul>
-                        </li>
-                        <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 3 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(3)}><em /></span>
-                            <Link href={`/${locale}/call-for-abstracts`} className="hash-nav">{t('callForAbstracts')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 3 ? "open-sub" : ""}`}>
-                                <li className="hash-has-sub"><Link href={`/${locale}/abstract-submission-guideline`} className="hash-nav">{t('abstractGuideline')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/call-for-abstracts`} className="hash-nav">{t('callForAbstracts')}</Link></li>
-                            </ul>
-                        </li>
-                        <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 4 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(4)}><em /></span>
-                            <Link href={`/${locale}/registration`} className="hash-nav">{t('registration')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 4 ? "open-sub" : ""}`}>
-                                <li className="hash-has-sub"><Link href={`/${locale}/registration`} className="hash-nav">{t('registrationInfo')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/registration-policies`} className="hash-nav">{t('policies')}</Link></li>
-                            </ul>
-                        </li>
-                        <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 5 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(5)}><em /></span>
-                            <Link href={`/${locale}/accommodation`} className="hash-nav">{t('travelAccommodation')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 5 ? "open-sub" : ""}`}>
-                                <li className="hash-has-sub"><Link href={`/${locale}/accommodation`} className="hash-nav">{t('hotelsRates')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/travel-visa`} className="hash-nav">{t('travelVisa')}</Link></li>
-                            </ul>
-                        </li>
-                        <li className="has-sub hash-has-sub"><span className={`submenu-button ${isAccordion == 6 ? "submenu-opened" : ""}`} onClick={() => handleAccordion(6)}><em /></span>
-                            <Link href={`/${locale}/sponsorship`} className="hash-nav">{t('sponsorship')}</Link>
-                            <ul className={`sub-menu ${isAccordion == 6 ? "open-sub" : ""}`}>
-                                <li className="hash-has-sub"><Link href={`/${locale}/sponsorship/confirmed-sponsors`} className="hash-nav">{t('confirmedSponsors')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/sponsorship/sponsorship-prospectus`} className="hash-nav">{t('sponsorshipProspectusMenu')}</Link></li>
-                                <li className="hash-has-sub"><Link href={`/${locale}/sponsorship/exhibition-floor-plan`} className="hash-nav">{t('exhibitionFloorPlan')}</Link></li>
-                            </ul>
-                        </li>
-                        <li className="hash-has-sub"><Link href={`/${locale}/gallery`} className="hash-nav">{t('gallery')}</Link></li>
+                <div className={styles.mobileNav}>
+                    <ul className={styles.navList}>
+                        <li><Link href={`/${locale}`}>{t('home')}</Link></li>
 
+                        <li className={isAccordion === 1 ? styles.open : ''}>
+                            <div className={styles.menuHeader}>
+                                <span className={styles.menuTitle} onClick={() => handleAccordion(1)}>{t('aboutPris')}</span>
+                                <span
+                                    className={`${styles.submenuButton} ${isAccordion === 1 ? styles.submenuOpened : ''}`}
+                                    onClick={() => handleAccordion(1)}
+                                >
+                                    <em />
+                                </span>
+                            </div>
+                            <ul className={`${styles.subMenu} ${isAccordion === 1 ? styles.openSub : ''}`}>
+                                <li><Link href={`/${locale}/about`}>{t('aboutPris')}</Link></li>
+                                <li><Link href={`/${locale}/welcome-messages`}>{t('welcomeMessages')}</Link></li>
+                            </ul>
+                        </li>
+
+                        <li className={isAccordion === 2 ? styles.open : ''}>
+                            <div className={styles.menuHeader}>
+                                <span className={styles.menuTitle} onClick={() => handleAccordion(2)}>{t('program')}</span>
+                                <span
+                                    className={`${styles.submenuButton} ${isAccordion === 2 ? styles.submenuOpened : ''}`}
+                                    onClick={() => handleAccordion(2)}
+                                >
+                                    <em />
+                                </span>
+                            </div>
+                            <ul className={`${styles.subMenu} ${isAccordion === 2 ? styles.openSub : ''}`}>
+                                <li><Link href={`/${locale}/program`}>{t('programOverview')}</Link></li>
+                                <li><Link href={`/${locale}/program-plenary`}>{t('plenaryKeynotes')}</Link></li>
+                                <li><Link href={`/${locale}/program-symposium`}>{t('symposia')}</Link></li>
+                                <li><Link href={`/${locale}/program-oral-poster`}>{t('oralPoster')}</Link></li>
+                                <li><Link href={`/${locale}/gala-dinner`}>{t('galaDinner')}</Link></li>
+                                <li><Link href={`/${locale}/preconference-workshops`}>{t('workshops')}</Link></li>
+                            </ul>
+                        </li>
+
+                        <li className={isAccordion === 3 ? styles.open : ''}>
+                            <div className={styles.menuHeader}>
+                                <span className={styles.menuTitle} onClick={() => handleAccordion(3)}>{t('callForAbstracts')}</span>
+                                <span
+                                    className={`${styles.submenuButton} ${isAccordion === 3 ? styles.submenuOpened : ''}`}
+                                    onClick={() => handleAccordion(3)}
+                                >
+                                    <em />
+                                </span>
+                            </div>
+                            <ul className={`${styles.subMenu} ${isAccordion === 3 ? styles.openSub : ''}`}>
+                                <li><Link href={`/${locale}/abstract-submission-guideline`}>{t('abstractGuideline')}</Link></li>
+                                <li><Link href={`/${locale}/call-for-abstracts`}>{t('callForAbstracts')}</Link></li>
+                            </ul>
+                        </li>
+
+                        <li className={isAccordion === 4 ? styles.open : ''}>
+                            <div className={styles.menuHeader}>
+                                <span className={styles.menuTitle} onClick={() => handleAccordion(4)}>{t('registration')}</span>
+                                <span
+                                    className={`${styles.submenuButton} ${isAccordion === 4 ? styles.submenuOpened : ''}`}
+                                    onClick={() => handleAccordion(4)}
+                                >
+                                    <em />
+                                </span>
+                            </div>
+                            <ul className={`${styles.subMenu} ${isAccordion === 4 ? styles.openSub : ''}`}>
+                                <li><Link href={`/${locale}/registration`}>{t('registrationInfo')}</Link></li>
+                                <li><Link href={`/${locale}/registration-policies`}>{t('policies')}</Link></li>
+                            </ul>
+                        </li>
+
+                        <li className={isAccordion === 5 ? styles.open : ''}>
+                            <div className={styles.menuHeader}>
+                                <span className={styles.menuTitle} onClick={() => handleAccordion(5)}>{t('travelAccommodation')}</span>
+                                <span
+                                    className={`${styles.submenuButton} ${isAccordion === 5 ? styles.submenuOpened : ''}`}
+                                    onClick={() => handleAccordion(5)}
+                                >
+                                    <em />
+                                </span>
+                            </div>
+                            <ul className={`${styles.subMenu} ${isAccordion === 5 ? styles.openSub : ''}`}>
+                                <li><Link href={`/${locale}/accommodation`}>{t('hotelsRates')}</Link></li>
+                                <li><Link href={`/${locale}/travel-visa`}>{t('travelVisa')}</Link></li>
+                            </ul>
+                        </li>
+
+                        <li className={isAccordion === 6 ? styles.open : ''}>
+                            <div className={styles.menuHeader}>
+                                <span className={styles.menuTitle} onClick={() => handleAccordion(6)}>{t('sponsorship')}</span>
+                                <span
+                                    className={`${styles.submenuButton} ${isAccordion === 6 ? styles.submenuOpened : ''}`}
+                                    onClick={() => handleAccordion(6)}
+                                >
+                                    <em />
+                                </span>
+                            </div>
+                            <ul className={`${styles.subMenu} ${isAccordion === 6 ? styles.openSub : ''}`}>
+                                <li><Link href={`/${locale}/sponsorship/confirmed-sponsors`}>{t('confirmedSponsors')}</Link></li>
+                                <li><Link href={`/${locale}/sponsorship/sponsorship-prospectus`}>{t('sponsorshipProspectusMenu')}</Link></li>
+                                <li><Link href={`/${locale}/sponsorship/exhibition-floor-plan`}>{t('exhibitionFloorPlan')}</Link></li>
+                            </ul>
+                        </li>
+
+                        <li><Link href={`/${locale}/gallery`}>{t('gallery')}</Link></li>
                     </ul>
 
                     <div className="allmobilesection">
