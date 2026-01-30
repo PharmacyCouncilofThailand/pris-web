@@ -63,7 +63,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
         <>
 
             <header>
-                <div className={`header-area homepage1 header header-sticky d-none d-xxl-block ${scroll ? 'sticky' : ''} ${headerBgWhite ? styles.headerSticky : ''}`} id="header">
+                <div className={`header-area homepage1 header header-sticky d-none d-xxl-block ${scroll ? `sticky ${styles.headerSticky}` : ''} ${headerBgWhite ? styles.headerSticky : ''}`} id="header">
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-lg-12">
