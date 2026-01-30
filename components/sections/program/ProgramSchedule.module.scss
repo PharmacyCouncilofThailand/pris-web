@@ -1,0 +1,391 @@
+@use '@/styles/variables' as *;
+@use "sass:color";
+
+.section {
+    background-color: $bg-light;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* Event Types - Dynamic Classes */
+/* We will use data attributes or specific classes for event types */
+.eventPlenary {
+    --event-color: #8B5CF6;
+    --event-light: #EDE9FE;
+}
+
+.eventSymposia {
+    --event-color: #3B82F6;
+    --event-light: #DBEAFE;
+}
+
+.eventOral {
+    --event-color: #10B981;
+    --event-light: #D1FAE5;
+}
+
+.eventPoster {
+    --event-color: #F59E0B;
+    --event-light: #FEF3C7;
+}
+
+.eventCeremony {
+    --event-color: #EC4899;
+    --event-light: #FCE7F3;
+}
+
+.eventSocial {
+    --event-color: #EF4444;
+    --event-light: #FEE2E2;
+}
+
+.eventWorkshop {
+    --event-color: #10B981;
+    --event-light: #D1FAE5;
+}
+
+.eventRegistration {
+    --event-color: #6366F1;
+    --event-light: #E0E7FF;
+}
+
+.eventBreak {
+    --event-color: #9CA3AF;
+    --event-light: #F3F4F6;
+}
+
+.scheduleBox {
+    background: $bg-white;
+    border-radius: 16px;
+    box-shadow: $shadow-card;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.scheduleHeader {
+    background: linear-gradient(135deg, $primary-blue 0%, #283593 100%);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+}
+
+.dateBadge {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dayLabel {
+    background: $primary-gold;
+    color: $primary-blue;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.dateLabel {
+    color: $text-light;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Download Button */
+.downloadBtn {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    padding: 10px 14px;
+    color: $text-light;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+        padding: 8px 16px;
+        gap: 8px;
+    }
+
+    &:hover {
+        background: $primary-gold;
+        border-color: $primary-gold;
+        color: $primary-blue;
+        padding: 10px 20px;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(255, 186, 0, 0.4);
+
+        i {
+            transform: translateY(2px);
+        }
+
+        .downloadText {
+            max-width: 150px;
+            opacity: 1;
+        }
+    }
+
+    i {
+        font-size: 16px;
+        transition: transform 0.3s ease;
+    }
+}
+
+.downloadText {
+    max-width: 0;
+    opacity: 0;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (max-width: 768px) {
+        max-width: 150px;
+        opacity: 1;
+    }
+}
+
+.scheduleContent {
+    padding: 0;
+    max-height: 500px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $primary-blue #e5e7eb;
+
+    @media (max-width: 768px) {
+        max-height: 400px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #e5e7eb;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, $primary-blue 0%, #3949ab 100%);
+        border-radius: 4px;
+    }
+}
+
+.scheduleRow {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid $border-light;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: #f0f7ff !important;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.scheduleRowEven {
+    background-color: $bg-white;
+}
+
+.scheduleRowOdd {
+    background-color: #fafafa;
+}
+
+.timeCol {
+    min-width: 160px;
+    max-width: 160px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: $primary-blue;
+    font-size: 14px;
+    background: rgba(26, 35, 126, 0.03);
+    border-left-width: 4px;
+    border-left-style: solid;
+    /* Border color will be set inline or via dynamic class */
+
+    i {
+        font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 12px 16px;
+    }
+}
+
+.eventsContainer {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 12px 20px;
+    gap: 12px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        padding: 12px 16px;
+    }
+}
+
+.multiColumn {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.eventItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 12px;
+    flex: 1;
+    min-width: 180px;
+    /* Border left for parallel events handled via style or class */
+
+    @media (max-width: 768px) {
+        min-width: 100%;
+    }
+}
+
+.eventTitle {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    flex: 1;
+    white-space: pre-line;
+}
+
+/* E-Program Buttons */
+.eprogramButtons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0 50px;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.eprogramBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 14px 24px;
+    }
+
+    i {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+    }
+}
+
+.btnPrimary {
+    @extend .eprogramBtn;
+    background: linear-gradient(135deg, $primary-blue 0%, #283593 100%);
+    color: $text-light;
+
+    &:hover {
+        background: linear-gradient(135deg, #283593 0%, #3949ab 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(26, 35, 126, 0.3);
+
+        i {
+            transform: rotate(-10deg) scale(1.1);
+        }
+    }
+}
+
+.btnDownload {
+    @extend .eprogramBtn;
+    background: $bg-white;
+    color: $primary-blue;
+    border: 2px solid $primary-blue;
+    padding: 16px 18px;
+    gap: 0;
+    overflow: hidden;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+        padding: 14px 24px;
+        gap: 10px;
+    }
+
+    i {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover {
+        background: $primary-gold;
+        border-color: $primary-gold;
+        color: $primary-blue;
+        padding: 16px 28px;
+        gap: 12px;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 186, 0, 0.4);
+
+        i {
+            transform: translateY(2px);
+        }
+
+        .downloadLabel {
+            max-width: 200px;
+            opacity: 1;
+        }
+    }
+}
+
+.downloadLabel {
+    max-width: 0;
+    opacity: 0;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (max-width: 768px) {
+        max-width: 200px;
+        opacity: 1;
+    }
+}

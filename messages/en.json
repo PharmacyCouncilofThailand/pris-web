@@ -29,6 +29,7 @@
     "viewAll": "View All",
     "submit": "Submit",
     "cancel": "Cancel",
+    "ok": "OK",
     "back": "Back",
     "next": "Next",
     "registerNow": "Register Now",
@@ -52,7 +53,18 @@
     "backToHome": "Back to Home",
     "confirmedSponsors": "Sponsors/Exhibitors",
     "sponsorshipProspectusMenu": "Sponsorship Prospectus",
-    "exhibitionFloorPlan": "Exhibition Floor Plan"
+    "exhibitionFloorPlan": "Exhibition Floor Plan",
+    "validation": {
+      "required": "Required",
+      "emailInvalid": "Invalid email address",
+      "passwordRequired": "Password is required",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "confirmPasswordRequired": "Confirm Password is required",
+      "passwordsNoMatch": "Passwords don't match",
+      "agreeTermsRequired": "You must agree to the terms"
+    }
   },
   "hero": {
     "subtitle": "The 25th Asian Conference on Clinical Pharmacy",
@@ -367,7 +379,6 @@
     "advantage3": "Participate in discussions that have a significant impact on the field of clinical pharmacy, including novel developments, clinical challenges, and innovative solutions.",
     "advantage4": "Utilize promotional materials, digital platforms, and the official Congress website to establish a prominent brand presence.",
     "advantage5": "Leverage personalized interactions and face-to-face engagement to support business growth and enhance brand recognition.",
-
     "bronze": "Bronze Sponsor",
     "benefits": "Benefits",
     "contactUs": "Contact Us for Sponsorship",
@@ -438,7 +449,15 @@
       "member": "Student",
       "thaiPharmacist": "Thai Pharmacist",
       "internationalPharmacist": "International Pharmacist"
-    }
+    },
+    "invalidCredentials": "Invalid email or password",
+    "accountRejected": "Your account has been rejected. Please contact support.",
+    "accountSuspended": "Account suspended. Please contact support.",
+    "loginFailed": "Login failed",
+    "loginFailedTryAgain": "Login failed. Please try again.",
+    "accountUnderReview": "Account Under Review",
+    "accountUnderReviewDesc": "Your account is under review. Please try again after receiving the confirmation email.",
+    "signingIn": "Signing in..."
   },
   "signup": {
     "pageTitle": "Sign Up",
@@ -459,8 +478,47 @@
     "register": "Register",
     "haveAccount": "Already have an account?",
     "signIn": "Sign In",
+    "idCardHint": "Verify Thai nationality for THB pricing",
+    "pharmacyLicensePlaceholder": "Enter license number",
+    "pharmacyLicense": "Pharmacy License Number (Optional)",
+    "passportId": "Passport ID",
+    "passportIdPlaceholder": "e.g. AB1234567",
+    "country": "Country",
+    "countryPlaceholder": "Select Country",
+    "phoneNumber": "Phone Number",
+    "studentDoc": "Student Verification Document (PDF, JPG, PNG)",
+    "chooseFile": "📁 Choose File",
+    "removeFile": "Remove file",
+    "fileSelected": "File selected - will upload when you create account",
+    "studentDocHint": "Select student certificate or related document (PDF, JPG, PNG)",
+    "creating": "Creating...",
     "pendingApproval": "Registration successful. Please wait 5-7 days for verification.",
-    "backToHome": "Back to Home"
+    "types": {
+      "thaiStudent": "Thai Student",
+      "thaiStudentDesc": "For Thai Student",
+      "internationalStudent": "International Student",
+      "internationalStudentDesc": "For International Student",
+      "thaiProfessionalDesc": "For Thai Health Professional",
+      "internationalProfessionalDesc": "For International Health Professional"
+    },
+    "pendingApprovalDesc": "Your registration has been submitted successfully. Our team will review your application within 5-7 business days.",
+    "registerSuccess": "Registration successful!",
+    "registerFailed": "Registration failed. Please try again.",
+    "accountCreated": "Account Created",
+    "registering": "Registering...",
+    "processing": "Processing...",
+    "backToHome": "Back to Home",
+    "errors": {
+      "fileType": "Only PDF, JPG, PNG files are allowed",
+      "fileSize": "File too large (max 10MB)",
+      "idCardRequired": "Please enter Thai ID card",
+      "countryRequired": "Please enter country",
+      "passportRequired": "Please enter passport ID",
+      "phoneInvalid": "Invalid phone number format",
+      "studentDocRequired": "Please select student verification document",
+      "registrationFailed": "Registration failed",
+      "generic": "Something went wrong. Please try again."
+    }
   },
   "registrationPolicies": {
     "pageTitle": "Registration Policies",
@@ -986,12 +1044,12 @@
     "workshopDate": "Date",
     "workshopTime": "Time",
     "instant": "Instant",
-        "processingTimeCard": "2-3 minutes",
-        "registrationPackage": "Registration Package",
-        "subtotal": "Subtotal",
-        "discount": "Discount",
-        "securePaymentFooter": "Secure payment powered by SSL encryption",
-        "dietaryOptions": {
+    "processingTimeCard": "2-3 minutes",
+    "registrationPackage": "Registration Package",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "securePaymentFooter": "Secure payment powered by SSL encryption",
+    "dietaryOptions": {
       "none": "No special requirements",
       "vegetarian": "Vegetarian",
       "vegan": "Vegan",

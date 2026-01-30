@@ -1,0 +1,90 @@
+/* components/common/FormInput.module.scss */
+
+.inputGroup {
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 16px;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #fff;
+    color: #333;
+
+    &:focus {
+        border-color: #FFBA00;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(255, 186, 0, 0.1);
+    }
+
+    &.hasError {
+        border-color: #EA4335;
+
+        &:focus {
+            box-shadow: 0 0 0 2px rgba(234, 67, 53, 0.1);
+        }
+    }
+
+    &.hasIcon {
+        padding-left: 45px;
+    }
+}
+
+.icon {
+    position: absolute;
+    left: 16px;
+    color: #666;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.togglePassword {
+    position: absolute;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+
+    &:hover {
+        color: #333;
+    }
+}
+
+.errorMessage {
+    color: #EA4335;
+    font-size: 14px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    i {
+        font-size: 12px;
+    }
+}

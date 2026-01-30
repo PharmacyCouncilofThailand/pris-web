@@ -1,0 +1,36 @@
+## 1. Zero Tolerance for Inline Styles & CSS Hacks
+- **Mobile-First:** Write default CSS for mobile, use `@media (min-width)` for desktop.
+- **SCSS Modules Only:** ALWAYS use `.module.scss`. NEVER use `style={{...}}`.
+- **Clean CSS:** NO `!important`. NO magic numbers (use variables). NO "fix" files.
+
+## 2. Internationalization (i18n) First
+- NEVER use hardcoded strings.
+- ALWAYS use `next-intl` (e.g., `t('key')`).
+
+## 3. Modern Next.js Architecture
+- **Server Components Default:** Add `'use client'` ONLY when interactivity is needed.
+- **Images & Links:** Use `next/image` and `next/link` ONLY.
+- **Fonts:** Use `next/font` variables.
+
+## 4. UI Kit & Reusability (Don't Reinvent)
+- **Check First:** Look in `@/components/common/` before building.
+- **Mandatory Usage:**
+    - Use `Button` (not `<a>` or `<button>`).
+    - Use `FormInput` & `FormTextArea` (not `<input>`).
+
+## 5. Strict TypeScript & Props
+- **No `any`:** Strict zero tolerance.
+- **Interfaces:** Define `interface Props` for every component.
+
+## 6. Accessibility (a11y) & Semantics
+- **Tags:** Use semantic HTML (`<nav>`, `<main>`, `<section>`).
+- **Labels:** Interactive elements must have `aria-label`.
+
+## 7. Responsive Responsibility
+- **Laptop Safe:** Navigation MUST be visible on Laptops (1200px+).
+- **Mobile Safe:** No overflow on small screens.
+
+## 8. Development Hygiene
+- **Imports:** Use absolute paths (`@/components/...`).
+- **Cleanup:** Remove unused imports/logs immediately.
+- **Verify:** ALWAYS run `npm run build` before confirming. 

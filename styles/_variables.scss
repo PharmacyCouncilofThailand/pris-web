@@ -1,0 +1,28 @@
+/* styles/_variables.scss */
+
+// Primary Brand Colors
+$primary-blue: #1a237e;
+$primary-gold: #FFBA00;
+$primary-text: #1a1a2e;
+
+// Contextual Colors
+$text-body: #6c757d;
+$text-light: #fff;
+
+// Status/Functional Colors
+$success: #28a745;
+$danger: #EA4335;
+$warning: #ffc107;
+$info: #17a2b8;
+
+// UI Elements
+$bg-light: #f8f9fa;
+$bg-white: #ffffff;
+$border-light: #e9ecef;
+$shadow-card: 0 15px 50px rgba(0, 0, 0, 0.1);
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

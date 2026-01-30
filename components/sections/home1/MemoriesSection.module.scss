@@ -1,0 +1,166 @@
+@use '@/styles/variables' as *;
+
+.section {
+    padding: 60px 0 100px;
+    background-color: #f9f9f9;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 48px;
+
+    h5 {
+        color: $primary-blue;
+        /* Was #3b5998 - closest var or explicit */
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media (max-width: 991px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 575px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card */
+.card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    background: $bg-white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Safari fix */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    will-change: transform;
+    backface-visibility: hidden;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+
+        .image {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            opacity: 1;
+
+            i {
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+/* Image */
+.image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+
+    @media (max-width: 575px) {
+        aspect-ratio: 16 / 10;
+    }
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    i {
+        font-size: 28px;
+        color: white;
+        transform: scale(0.8);
+        transition: transform 0.3s ease;
+    }
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    animation: fadeIn 0.25s ease;
+}
+
+.lightboxImage {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+    animation: zoomIn 0.25s ease;
+}
+
+.lightboxClose {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    z-index: 10001;
+
+    &:hover {
+        transform: scale(1.15);
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.92);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

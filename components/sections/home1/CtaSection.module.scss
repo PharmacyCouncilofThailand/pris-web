@@ -1,0 +1,95 @@
+/* components/sections/home1/CtaSection.module.scss */
+@use '@/styles/variables' as *;
+@use "sass:color";
+
+.section {
+    margin-bottom: 60px;
+}
+
+.boxArea {
+    padding: 40px;
+    text-align: center;
+    background: #fff;
+    /* Assuming white or inherited, checking context. Original didn't specify bg on boxarea but standard cta usually has one. Keeping rudimentary style from inline */
+    border-radius: 20px;
+    box-shadow: $shadow-card;
+}
+
+.title {
+    color: $primary-text;
+    margin-bottom: 12px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.description {
+    color: rgba($primary-text, 0.7);
+    margin-bottom: 24px;
+    font-size: 16px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.primaryBtn {
+    background: $primary-text;
+    color: $text-light;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: color.adjust($primary-text, $lightness: 10%);
+        color: $text-light;
+    }
+}
+
+.secondaryBtn {
+    background: transparent;
+    color: $primary-text;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    border: 2px solid $primary-text;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba($primary-text, 0.05);
+        color: $primary-text;
+    }
+}
+
+.infoWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+        color: $primary-text;
+    }
+
+    span {
+        color: $primary-text;
+        font-size: 14px;
+    }
+}

@@ -1,6 +1,8 @@
 'use client'
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link'
+import Image from 'next/image';
+import styles from './Footer1.module.scss';
 
 
 export default function Footer1() {
@@ -14,14 +16,20 @@ export default function Footer1() {
 
 
 			{/* Main Footer */}
-			<div className="footer1-sertion-area" style={{ paddingTop: '60px' }}>
+			<div className={`footer1-sertion-area ${styles.section}`}>
 				<div className="container">
 					<div className="row">
 						{/* Logo & Description */}
 						<div className="col-lg-3 col-md-6">
 							<div className="footer-logo-area">
-								<img src="/assets/img/logo/footer-logo-2026.png" alt="Pris 2026" style={{ height: '60px', width: 'auto', display: 'block', margin: '0' }} />
-								<div style={{ height: '30px' }} />
+								<Image
+									src="/assets/img/logo/footer-logo-2026.png"
+									alt="Pris 2026"
+									width={120}
+									height={60}
+									className={styles.logoImage}
+								/>
+								<div className={styles.spacer30} />
 								<p>{t('footer.description')}</p>
 								<div className="space24" />
 
@@ -46,10 +54,25 @@ export default function Footer1() {
 						<div className="col-lg-3 col-md-6">
 							<div className="link-content2">
 								<h3>{t('common.contactUs')}</h3>
-								<ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-									<li style={{ marginBottom: '12px' }}><Link href="mailto:Pris2026@gmail.com" style={{ display: 'flex', alignItems: 'center' }}><i className="fa-solid fa-envelope" style={{ width: '20px', marginRight: '10px', color: '#EA4335' }} />Pris2026@gmail.com</Link></li>
-									<li style={{ marginBottom: '12px' }}><Link href="https://www.facebook.com/profile.php?id=61584025641109" target="_blank" style={{ display: 'flex', alignItems: 'center' }}><i className="fa-brands fa-facebook-f" style={{ width: '20px', marginRight: '10px', color: '#1877F2' }} />Pris2026</Link></li>
-									<li><Link href="https://instagram.com/Pris2026" target="_blank" style={{ display: 'flex', alignItems: 'center' }}><i className="fa-brands fa-instagram" style={{ width: '20px', marginRight: '10px', color: '#E4405F' }} />Pris2026</Link></li>
+								<ul className={styles.contactList}>
+									<li>
+										<Link href="mailto:Pris2026@gmail.com" className={styles.contactLink}>
+											<i className={`fa-solid fa-envelope ${styles.iconEnvelope}`} />
+											Pris2026@gmail.com
+										</Link>
+									</li>
+									<li>
+										<Link href="https://www.facebook.com/profile.php?id=61584025641109" target="_blank" className={styles.contactLink}>
+											<i className={`fa-brands fa-facebook-f ${styles.iconFacebook}`} />
+											Pris2026
+										</Link>
+									</li>
+									<li>
+										<Link href="https://instagram.com/Pris2026" target="_blank" className={styles.contactLink}>
+											<i className={`fa-brands fa-instagram ${styles.iconInstagram}`} />
+											Pris2026
+										</Link>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -63,7 +86,13 @@ export default function Footer1() {
 									{/* Top row - Memory images */}
 									<div className="col-lg-4 col-md-4 col-4">
 										<div className="img1">
-											<img src="/assets/img/all-images/memory/memory1.jpg" alt="" style={{ width: '100%', height: '80px', objectFit: 'cover' }} />
+											<Image
+												src="/assets/img/all-images/memory/memory1.jpg"
+												alt="Memory 1"
+												width={100}
+												height={80}
+												className={styles.galleryImage}
+											/>
 											<div className="icons">
 												<Link href={`/${locale}/gallery`}><i className="fa-solid fa-arrow-right" /></Link>
 											</div>
@@ -71,7 +100,13 @@ export default function Footer1() {
 									</div>
 									<div className="col-lg-4 col-md-4 col-4">
 										<div className="img1">
-											<img src="/assets/img/all-images/memory/memory3.jpg" alt="" style={{ width: '100%', height: '80px', objectFit: 'cover' }} />
+											<Image
+												src="/assets/img/all-images/memory/memory3.jpg"
+												alt="Memory 3"
+												width={100}
+												height={80}
+												className={styles.galleryImage}
+											/>
 											<div className="icons">
 												<Link href={`/${locale}/gallery`}><i className="fa-solid fa-arrow-right" /></Link>
 											</div>
@@ -79,7 +114,13 @@ export default function Footer1() {
 									</div>
 									<div className="col-lg-4 col-md-4 col-4">
 										<div className="img1">
-											<img src="/assets/img/all-images/memory/memory4.jpg" alt="" style={{ width: '100%', height: '80px', objectFit: 'cover' }} />
+											<Image
+												src="/assets/img/all-images/memory/memory4.jpg"
+												alt="Memory 4"
+												width={100}
+												height={80}
+												className={styles.galleryImage}
+											/>
 											<div className="icons">
 												<Link href={`/${locale}/gallery`}><i className="fa-solid fa-arrow-right" /></Link>
 											</div>
@@ -88,7 +129,13 @@ export default function Footer1() {
 									{/* Bottom row - Bangkok images */}
 									<div className="col-lg-4 col-md-4 col-4">
 										<div className="img1">
-											<img src="/assets/img/all-images/bangkok/img1.jpg" alt="" style={{ width: '100%', height: '80px', objectFit: 'cover' }} />
+											<Image
+												src="/assets/img/all-images/bangkok/img1.jpg"
+												alt="Bangkok 1"
+												width={100}
+												height={80}
+												className={styles.galleryImage}
+											/>
 											<div className="icons">
 												<Link href={`/${locale}/gallery`}><i className="fa-solid fa-arrow-right" /></Link>
 											</div>
@@ -96,7 +143,13 @@ export default function Footer1() {
 									</div>
 									<div className="col-lg-4 col-md-4 col-4">
 										<div className="img1">
-											<img src="/assets/img/all-images/bangkok/img3.jpg" alt="" style={{ width: '100%', height: '80px', objectFit: 'cover' }} />
+											<Image
+												src="/assets/img/all-images/bangkok/img3.jpg"
+												alt="Bangkok 3"
+												width={100}
+												height={80}
+												className={styles.galleryImage}
+											/>
 											<div className="icons">
 												<Link href={`/${locale}/gallery`}><i className="fa-solid fa-arrow-right" /></Link>
 											</div>
@@ -104,7 +157,13 @@ export default function Footer1() {
 									</div>
 									<div className="col-lg-4 col-md-4 col-4">
 										<div className="img1">
-											<img src="/assets/img/all-images/bangkok/img9.jpg" alt="" style={{ width: '100%', height: '80px', objectFit: 'cover' }} />
+											<Image
+												src="/assets/img/all-images/bangkok/img9.jpg"
+												alt="Bangkok 9"
+												width={100}
+												height={80}
+												className={styles.galleryImage}
+											/>
 											<div className="icons">
 												<Link href={`/${locale}/gallery`}><i className="fa-solid fa-arrow-right" /></Link>
 											</div>

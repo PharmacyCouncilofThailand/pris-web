@@ -1,81 +1,56 @@
-import React from 'react';
+'use client'
+import React, { useState, forwardRef } from 'react';
+import styles from './FormInput.module.scss';
 
-interface FormInputProps {
-  label: string;
-  type?: string;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  required?: boolean;
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
   error?: string;
   icon?: string;
-  iconColor?: string;
-  maxLength?: number;
+  isPassword?: boolean;
 }
 
-const FormInput: React.FC<FormInputProps> = React.memo(({
+const FormInput = forwardRef<HTMLInputElement, FormInputProps>(({
   label,
-  type = 'text',
-  name,
-  value,
-  onChange,
-  placeholder,
-  required = false,
   error,
   icon,
-  iconColor = '#FFBA00',
-  maxLength
-}) => {
+  isPassword = false,
+  className = '',
+  ...props
+}, ref) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const inputType = isPassword ? (showPassword ? 'text' : 'password') : props.type || 'text';
+
   return (
-    <div style={{ marginBottom: '20px' }}>
-      <label
-        style={{
-          display: 'block',
-          fontSize: '14px',
-          fontWeight: '600',
-          color: '#333',
-          marginBottom: '8px'
-        }}
-      >
-        {icon && (
-          <i
-            className={icon}
-            style={{ marginRight: '8px', color: iconColor }}
-          />
+    <div className={`${styles.inputGroup} ${className}`}>
+      {label && <label className={styles.label} htmlFor={props.id}>{label}</label>}
+
+      <div className={styles.inputWrapper}>
+        {icon && <i className={`${icon} ${styles.icon}`} />}
+
+        <input
+          ref={ref}
+          className={`${styles.input} ${error ? styles.hasError : ''} ${icon ? styles.hasIcon : ''}`}
+          {...props}
+          type={inputType}
+        />
+
+        {isPassword && (
+          <button
+            type="button"
+            className={styles.togglePassword}
+            onClick={() => setShowPassword(!showPassword)}
+            tabIndex={-1}
+          >
+            <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} />
+          </button>
         )}
-        {label} {required && '*'}
-      </label>
-      <input
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder || label}
-        required={required}
-        maxLength={maxLength}
-        style={{
-          width: '100%',
-          padding: '14px 18px',
-          fontSize: '15px',
-          border: error ? '2px solid #f44336' : '2px solid #e8e8e8',
-          borderRadius: '10px',
-          outline: 'none',
-          transition: 'all 0.3s ease',
-          background: '#fafafa'
-        }}
-      />
+      </div>
+
       {error && (
-        <p
-          style={{
-            color: '#f44336',
-            fontSize: '12px',
-            marginTop: '4px',
-            marginBottom: 0
-          }}
-        >
-          {error}
-        </p>
+        <div className={styles.errorMessage}>
+          <i className="fa-solid fa-circle-exclamation" />
+          <span>{error}</span>
+        </div>
       )}
     </div>
   );

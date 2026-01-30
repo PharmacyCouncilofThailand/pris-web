@@ -1,0 +1,101 @@
+/* components/layout/MobileMenu.module.scss */
+
+.mobileSidebar {
+    background: #000 !important;
+    background-color: #000 !important;
+
+    /* Force transparent background on inner containers */
+    & :global(.mobile-nav),
+    & :global(.mobile-nav .mobile-nav-list),
+    & :global(.allmobilesection),
+    & :global(.single-footer),
+    & :global(.logosicon-area) {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    & :global(.mobile-nav.mobile-nav1 .mobile-nav-list li a),
+    & :global(.mobile-nav.mobile-nav1 .mobile-nav-list li .hash-nav) {
+        color: #fff !important;
+    }
+
+    & :global(.single-footer h3),
+    & :global(.footer1-contact-info .contact-info-text a),
+    & :global(.menu-close) {
+        color: #fff !important;
+    }
+
+    & :global(.sub-menu) {
+        background: #111 !important;
+        display: none;
+
+        &.open-sub {
+            display: block !important;
+        }
+
+        /* Nesting for list items */
+        li a {
+            color: #ddd !important;
+        }
+    }
+
+    & :global(.contact-info-icon span) {
+        background: #fff !important;
+        color: #000 !important;
+
+        i {
+            color: #000 !important;
+        }
+    }
+}
+
+.logoImage {
+    height: 70px;
+    width: auto;
+    padding: 0;
+    border-radius: 0;
+}
+
+.authButtons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+
+    a {
+        flex: 1;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+.socialLinks {
+    margin-top: 16px;
+
+    .socialItem {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+}
+
+.socialIconFb {
+    font-size: 20px;
+    color: #1877F2;
+}
+
+.socialIconIg {
+    font-size: 20px;
+    color: #E4405F;
+}

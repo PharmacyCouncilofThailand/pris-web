@@ -1,0 +1,232 @@
+/* components/sections/home1/MapSection.module.scss */
+@use '@/styles/variables' as *;
+
+.section {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.headingWrapper {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.subheading {
+    color: #3b5998;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    /* h5 default approx */
+    margin-bottom: 0;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 700;
+    color: $primary-text;
+    margin-top: 16px;
+}
+
+/* Card Styles */
+.card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    height: 100%;
+    box-shadow: $shadow-card;
+    display: flex;
+    flex-direction: column;
+
+    &.infoCard {
+        padding: 30px;
+    }
+}
+
+/* Tabs */
+.tabsWrapper {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e9ecef;
+    overflow-x: auto;
+}
+
+.tabButton {
+    padding: 8px 20px;
+    border-radius: 30px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+
+    &.active {
+        background: #3b5998;
+        /* Keep specific blue for now or map to closest variable */
+        color: $text-light;
+        box-shadow: 0 4px 10px rgba(59, 89, 152, 0.3);
+    }
+
+    &.inactive {
+        background: #f0f2f5;
+        color: #6c757d;
+
+        &:hover {
+            background: #e2e6ea;
+        }
+    }
+}
+
+/* Floor Plan */
+.floorPlanContainer {
+    position: relative;
+    flex: 1;
+    min-height: 400px;
+    background: linear-gradient(135deg, #e8f4f8 0%, #d4e4ed 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
+    margin-top: 10px;
+    border-radius: 0 0 16px 16px;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.02);
+    }
+}
+
+.zoomIcon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    border-radius: 50%;
+    color: #333;
+    pointer-events: none;
+}
+
+/* Info Items */
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.iconBox {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    i {
+        color: #fff;
+        font-size: 20px;
+    }
+}
+
+.infoContent {
+    h4 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: $primary-text;
+    }
+
+    .label {
+        margin: 0;
+        color: $text-body;
+        font-size: 13px;
+    }
+
+    .value {
+        margin: 0;
+        font-weight: 600;
+        font-size: 16px;
+        color: $primary-text;
+    }
+}
+
+.description {
+    color: $text-body;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    padding-left: 60px;
+    margin-top: 12px;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 20px 0;
+}
+
+.spacer {
+    margin-bottom: 24px;
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+
+    img {
+        max-width: 95%;
+        max-height: 95%;
+        object-fit: contain;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.closeButton {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

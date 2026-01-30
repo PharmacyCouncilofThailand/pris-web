@@ -1,0 +1,202 @@
+@use '@/styles/variables' as *;
+
+.section {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.headingIcon {
+    margin-right: 8px;
+}
+
+.rowGap {
+    gap: 30px 0;
+}
+
+/* Map Card */
+.mapCard {
+    background: $bg-white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+
+        .mapImage {
+            transform: scale(1.05);
+        }
+
+        .mapOverlay {
+            opacity: 1;
+        }
+    }
+}
+
+.mapImageWrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.mapImage {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.mapOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 35, 126, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+
+    i {
+        font-size: 48px;
+        color: $primary-gold;
+    }
+
+    span {
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        i {
+            font-size: 36px;
+        }
+    }
+}
+
+.mapContent {
+    padding: 24px;
+
+    h4 {
+        font-size: 18px;
+        font-weight: 700;
+        color: $primary-blue;
+        /* #1a237e */
+        margin: 0 0 8px 0;
+        line-height: 1.4;
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
+    }
+}
+
+.thaiTitle {
+    font-size: 15px;
+    color: #666;
+    margin: 0 0 12px 0;
+    font-weight: 500;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+
+.description {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.6;
+
+    @media (max-width: 768px) {
+        font-size: 13px;
+    }
+}
+
+/* Lightbox Styles */
+.lightboxOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.lightboxContent {
+    position: relative;
+    max-width: 1400px;
+    width: 100%;
+    cursor: default;
+}
+
+.lightboxClose {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: white;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    color: $primary-blue;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 768px) {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    &:hover {
+        background: $primary-gold;
+        transform: rotate(90deg);
+    }
+}
+
+.lightboxImage {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+}
