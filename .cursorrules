@@ -1,7 +1,8 @@
 ## 1. Zero Tolerance for Inline Styles & CSS Hacks
 - **Mobile-First:** Write default CSS for mobile, use `@media (min-width)` for desktop.
 - **SCSS Modules Only:** ALWAYS use `.module.scss`. NEVER use `style={{...}}`.
-- **Clean CSS:** NO `!important`. NO magic numbers (use variables). NO "fix" files.
+- **Clean CSS:** NO magic numbers (use variables). NO "fix" files.
+- **No !important:** Use specificity to manage styles. **Exception:** You may use `!important` ONLY when strictly necessary to override stubborn third-party/vendor styles that cannot be controlled via specificity.
 
 ## 2. Internationalization (i18n) First
 - NEVER use hardcoded strings.

@@ -97,8 +97,45 @@
 
 /* Mobile Logo */
 .mobileLogo {
-    height: 60px;
+    height: 40px;
     width: auto;
+    object-fit: contain;
+}
+
+/* Sticky Mobile Header */
+.mobileHeaderSticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: #000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    padding: 10px 0;
+    /* Compact padding */
+    display: flex;
+    align-items: center;
+    /* Vertically center content */
+}
+
+/* Hamburger Icon */
+.hamburgerIcon {
+    color: #fff !important;
+    font-size: 20px;
+    /* Reduced from 24px */
+    width: 40px;
+    /* Match logo height */
+    height: 40px;
+    /* Match logo height */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Restore subtle border from original design if present or just needed for button feel */
+    border-radius: 4px;
+    /* Slight rounding */
 }
 
 /* Menu Link Styles (Top Level) */

@@ -301,7 +301,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
             </header>
 
             {/* Mobile Header - Outside of header tag for proper fixed positioning */}
-            <div className="mobile-header mobile-header1 d-block d-xxl-none">
+            <div className={`mobile-header mobile-header1 d-block d-xxl-none ${styles.mobileHeaderSticky}`}>
                 <div className="container-fluid">
                     <div className="col-12">
                         <div className="mobile-header-elements">
@@ -317,7 +317,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                 </Link>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <div className="mobile-nav-icon dots-menu" onClick={handleMobileMenu}>
+                                <div className={`mobile-nav-icon dots-menu ${styles.hamburgerIcon}`} onClick={handleMobileMenu}>
                                     <i className="fa-solid fa-bars" />
                                 </div>
                             </div>
