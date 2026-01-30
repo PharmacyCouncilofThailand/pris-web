@@ -17,14 +17,21 @@
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     min-width: 250px;
-    display: block;
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Ensure items start from the left */
+    justify-content: flex-start;
+
     /* Use Simple Block for natural flow */
     list-style: none;
     /* Ensure no bullets */
     margin: 0;
 
     /* Alignment Fix */
-    text-align: left;
+    text-align: left !important;
     /* Inheritable left align */
 
     &.open {
@@ -38,34 +45,78 @@
     /* List Items */
     li {
         display: block;
+        width: 100%;
+        /* Ensure li takes full width */
         margin-bottom: 0;
         padding: 0;
-        text-align: left;
+        text-align: left !important;
 
         &:not(:last-child) {
-            margin-bottom: 12px;
+            margin-bottom: 4px;
+            /* Reduced margin for tighter stack */
         }
 
-        /* High specificity selector to beat global styles without !important */
         a,
         a:link,
         a:visited {
-            display: block;
-            width: 100%;
-            color: #000000;
-            /* Standard black */
-            text-align: left;
+            /* Layout & Positioning */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+
+            /* Dimensions & Spacing */
+            width: auto;
+            margin-left: 10px;
+            padding-left: 20px;
+
+            /* Typography */
+            color: #0b0b0b !important;
             font-size: 16px;
             font-weight: 500;
+            text-align: left !important;
             text-decoration: none;
-            transition: all 0.2s ease;
             white-space: nowrap;
-            background-color: transparent;
-            /* Reset any background */
 
-            &:hover {
-                color: #FFBA00;
+            /* Visuals */
+            background-color: transparent;
+            border-left: none;
+            transition: all 0.2s ease;
+
+            /* Vertical Bar Indicator */
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+
+                display: block;
+                width: 4px;
+                height: 20px;
+
                 background-color: transparent;
+                border-radius: 2px;
+                transition: background-color 0.2s ease;
+            }
+
+            /* Hover State */
+            &:hover {
+                color: #FFBA00 !important;
+                background-color: transparent;
+            }
+
+            &:hover::before {
+                background-color: #FFBA00;
+            }
+
+            /* Active State */
+            &.activeDropdown {
+                color: #FFBA00 !important;
+            }
+
+            &.activeDropdown::before {
+                background-color: #FFBA00;
             }
         }
     }
@@ -73,7 +124,7 @@
 
 /* Header Sticky State */
 .headerSticky {
-    background: #000;
+    background: #000 !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -146,7 +197,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
 
     &.active {
         color: #FFBA00;

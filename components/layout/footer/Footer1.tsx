@@ -68,7 +68,7 @@ export default function Footer1() {
 										</Link>
 									</li>
 									<li>
-										<Link href="https://instagram.com/Pris2026" target="_blank" className={styles.contactLink}>
+										<Link href="#" className={styles.contactLink} onClick={(e) => e.preventDefault()}>
 											<i className={`fa-brands fa-instagram ${styles.iconInstagram}`} />
 											Pris2026
 										</Link>

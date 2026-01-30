@@ -63,7 +63,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
         <>
 
             <header>
-                <div className={`header-area homepage1 header header-sticky d-none d-xxl-block ${scroll ? 'sticky' : ''} ${headerBgWhite ? styles.headerSticky : ''}`} id="header">
+                <div className={`header-area homepage1 header header-sticky d-none d-xxl-block ${scroll ? `sticky ${styles.headerSticky}` : ''} ${headerBgWhite ? styles.headerSticky : ''}`} id="header">
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-lg-12">
@@ -93,8 +93,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                     {t('about')} <i className={`fa-solid ${openDropdown === 'about' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
                                                 <ul className={`${styles.dropdownPadding} ${openDropdown === 'about' ? styles.open : ''}`}>
-                                                    <li><Link href={`/${locale}/about`}>{t('aboutPris')}</Link></li>
-                                                    <li><Link href={`/${locale}/welcome-messages`}>{t('welcomeMessages')}</Link></li>
+                                                    <li><Link href={`/${locale}/about`} className={isActive(`/${locale}/about`) ? styles.activeDropdown : ''}>{t('aboutPris')}</Link></li>
+                                                    <li><Link href={`/${locale}/welcome-messages`} className={isActive(`/${locale}/welcome-messages`) ? styles.activeDropdown : ''}>{t('welcomeMessages')}</Link></li>
                                                 </ul>
                                             </li>
                                             <li className={openDropdown === 'program' ? 'dropdown-open' : ''}>
@@ -106,12 +106,12 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                     {t('program')} <i className={`fa-solid ${openDropdown === 'program' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
                                                 <ul className={`${styles.dropdownPadding} ${openDropdown === 'program' ? styles.open : ''}`}>
-                                                    <li><Link href={`/${locale}/program`}>{t('programOverview')}</Link></li>
-                                                    <li><Link href={`/${locale}/program-plenary`}>{t('plenaryKeynotes')}</Link></li>
-                                                    <li><Link href={`/${locale}/program-symposium`}>{t('symposia')}</Link></li>
-                                                    <li><Link href={`/${locale}/program-oral-poster`}>{t('oralPoster')}</Link></li>
-                                                    <li><Link href={`/${locale}/gala-dinner`}>{t('galaDinner')}</Link></li>
-                                                    <li><Link href={`/${locale}/preconference-workshops`}>{t('workshops')}</Link></li>
+                                                    <li><Link href={`/${locale}/program`} className={isActive(`/${locale}/program`) ? styles.activeDropdown : ''}>{t('programOverview')}</Link></li>
+                                                    <li><Link href={`/${locale}/program-plenary`} className={isActive(`/${locale}/program-plenary`) ? styles.activeDropdown : ''}>{t('plenaryKeynotes')}</Link></li>
+                                                    <li><Link href={`/${locale}/program-symposium`} className={isActive(`/${locale}/program-symposium`) ? styles.activeDropdown : ''}>{t('symposia')}</Link></li>
+                                                    <li><Link href={`/${locale}/program-oral-poster`} className={isActive(`/${locale}/program-oral-poster`) ? styles.activeDropdown : ''}>{t('oralPoster')}</Link></li>
+                                                    <li><Link href={`/${locale}/gala-dinner`} className={isActive(`/${locale}/gala-dinner`) ? styles.activeDropdown : ''}>{t('galaDinner')}</Link></li>
+                                                    <li><Link href={`/${locale}/preconference-workshops`} className={isActive(`/${locale}/preconference-workshops`) ? styles.activeDropdown : ''}>{t('workshops')}</Link></li>
                                                 </ul>
                                             </li>
                                             <li className={openDropdown === 'abstracts' ? 'dropdown-open' : ''}>
@@ -123,8 +123,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                     {t('callForAbstracts')} <i className={`fa-solid ${openDropdown === 'abstracts' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
                                                 <ul className={`${styles.dropdownPadding} ${openDropdown === 'abstracts' ? styles.open : ''}`}>
-                                                    <li><Link href={`/${locale}/abstract-submission-guideline`}>{t('abstractGuideline')}</Link></li>
-                                                    <li><Link href={`/${locale}/call-for-abstracts`}>{t('callForAbstracts')}</Link></li>
+                                                    <li><Link href={`/${locale}/abstract-submission-guideline`} className={isActive(`/${locale}/abstract-submission-guideline`) ? styles.activeDropdown : ''}>{t('abstractGuideline')}</Link></li>
+                                                    <li><Link href={`/${locale}/call-for-abstracts`} className={isActive(`/${locale}/call-for-abstracts`) ? styles.activeDropdown : ''}>{t('callForAbstracts')}</Link></li>
                                                 </ul>
                                             </li>
                                             <li className={openDropdown === 'registration' ? 'dropdown-open' : ''}>
@@ -136,8 +136,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                     {t('registration')} <i className={`fa-solid ${openDropdown === 'registration' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
                                                 <ul className={`${styles.dropdownPadding} ${openDropdown === 'registration' ? styles.open : ''}`}>
-                                                    <li><Link href={`/${locale}/registration`}>{t('registrationInfo')}</Link></li>
-                                                    <li><Link href={`/${locale}/registration-policies`}>{t('policies')}</Link></li>
+                                                    <li><Link href={`/${locale}/registration`} className={isActive(`/${locale}/registration`) ? styles.activeDropdown : ''}>{t('registrationInfo')}</Link></li>
+                                                    <li><Link href={`/${locale}/registration-policies`} className={isActive(`/${locale}/registration-policies`) ? styles.activeDropdown : ''}>{t('policies')}</Link></li>
                                                 </ul>
                                             </li>
                                             <li className={openDropdown === 'travel' ? 'dropdown-open' : ''}>
@@ -149,8 +149,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                     {t('travelAccommodation')} <i className={`fa-solid ${openDropdown === 'travel' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
                                                 <ul className={`${styles.dropdownPadding} ${openDropdown === 'travel' ? styles.open : ''}`}>
-                                                    <li><Link href={`/${locale}/accommodation`}>{t('hotelsRates')}</Link></li>
-                                                    <li><Link href={`/${locale}/travel-visa`}>{t('travelVisa')}</Link></li>
+                                                    <li><Link href={`/${locale}/accommodation`} className={isActive(`/${locale}/accommodation`) ? styles.activeDropdown : ''}>{t('hotelsRates')}</Link></li>
+                                                    <li><Link href={`/${locale}/travel-visa`} className={isActive(`/${locale}/travel-visa`) ? styles.activeDropdown : ''}>{t('travelVisa')}</Link></li>
                                                 </ul>
                                             </li>
                                             <li className={openDropdown === 'sponsorship' ? 'dropdown-open' : ''}>
@@ -162,9 +162,9 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                     {t('sponsorship')} <i className={`fa-solid ${openDropdown === 'sponsorship' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
                                                 <ul className={`${styles.dropdownPadding} ${openDropdown === 'sponsorship' ? styles.open : ''}`}>
-                                                    <li><Link href={`/${locale}/sponsorship/confirmed-sponsors`}>{t('confirmedSponsors')}</Link></li>
-                                                    <li><Link href={`/${locale}/sponsorship/sponsorship-prospectus`}>{t('sponsorshipProspectusMenu')}</Link></li>
-                                                    <li><Link href={`/${locale}/sponsorship/exhibition-floor-plan`}>{t('exhibitionFloorPlan')}</Link></li>
+                                                    <li><Link href={`/${locale}/sponsorship/confirmed-sponsors`} className={isActive(`/${locale}/sponsorship/confirmed-sponsors`) ? styles.activeDropdown : ''}>{t('confirmedSponsors')}</Link></li>
+                                                    <li><Link href={`/${locale}/sponsorship/sponsorship-prospectus`} className={isActive(`/${locale}/sponsorship/sponsorship-prospectus`) ? styles.activeDropdown : ''}>{t('sponsorshipProspectusMenu')}</Link></li>
+                                                    <li><Link href={`/${locale}/sponsorship/exhibition-floor-plan`} className={isActive(`/${locale}/sponsorship/exhibition-floor-plan`) ? styles.activeDropdown : ''}>{t('exhibitionFloorPlan')}</Link></li>
                                                 </ul>
                                             </li>
                                             <li className={openDropdown === 'more' ? 'dropdown-open' : ''}>
@@ -176,8 +176,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSear
                                                     {t('more')} <i className={`fa-solid ${openDropdown === 'more' ? 'fa-angle-up' : 'fa-angle-down'}`} />
                                                 </a>
                                                 <ul className={`${styles.dropdownPadding} ${openDropdown === 'more' ? styles.open : ''}`}>
-                                                    <li><Link href={`/${locale}/gallery`}>{t('gallery')}</Link></li>
-                                                    <li><Link href={`/${locale}/contact`}>{t('contact')}</Link></li>
+                                                    <li><Link href={`/${locale}/gallery`} className={isActive(`/${locale}/gallery`) ? styles.activeDropdown : ''}>{t('gallery')}</Link></li>
+                                                    <li><Link href={`/${locale}/contact`} className={isActive(`/${locale}/contact`) ? styles.activeDropdown : ''}>{t('contact')}</Link></li>
                                                 </ul>
                                             </li>
                                         </ul>
